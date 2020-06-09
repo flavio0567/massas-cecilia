@@ -26,14 +26,14 @@ describe('AuthenticateUser', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password: "123456",
       is_admin: 1,
       is_active: 0,
     });
 
     const response = await authenticateUser.execute({
-      mobile: 9254759191,
+      mobile: "9254759191",
       password: '123456',
     });
 
@@ -44,7 +44,7 @@ describe('AuthenticateUser', () => {
   it('should not be able to Authenticate with a non-existing user', async () => {
     await expect(
       authenticateUser.execute({
-        mobile: 9999999999,
+        mobile: '9999999999',
         password: '123123',
       })
     ).rejects.toBeInstanceOf(AppError);
@@ -55,7 +55,7 @@ describe('AuthenticateUser', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password: "123456",
       is_admin: 1,
       is_active: 0,
@@ -63,7 +63,7 @@ describe('AuthenticateUser', () => {
 
     await expect(
       authenticateUser.execute({
-        mobile:  9254759191,
+        mobile:  "9254759191",
         password: '654321',
       })
     ).rejects.toBeInstanceOf(AppError);

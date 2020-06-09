@@ -6,8 +6,9 @@ import cors from 'cors';
 import { errors } from 'celebrate';
 import 'express-async-errors';
 
-import AppError from '@shared/errors/AppError';
 import routes from './routes';
+import AppError from '@shared/errors/AppError';
+import uploadConfig from '../../../config/upload';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
@@ -15,6 +16,7 @@ import '@shared/container';
 const app = express();
 
 app.use(cors());
+app.use('/files', express.static(uploadConfig.directory));
 app.use(express.json());
 app.use(routes);
 
@@ -24,7 +26,7 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
       status: 'error',
-      message: err.message,
+      message: err.message
     });
   }
 
@@ -32,10 +34,9 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
 
   return res.status(500).json({
     status: 'error',
-    message: 'Internal server error.',
+    message: err.message
   });
 });
-  
-app.listen(3337, () => {
-  console.log('🍝 Massas Server started on port 3337!');
+app.listen(3333, () => {
+  console.log('🍝 Massas Server started on port 3333!');
 });

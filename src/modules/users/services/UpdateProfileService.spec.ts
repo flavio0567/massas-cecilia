@@ -24,7 +24,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -34,12 +34,12 @@ describe('UpdateProfileService', () => {
       user_id: user.id,
       name: "Chico Rocha",
       email: "chico@gmail.com",
-      mobile: 9254758888,
+      mobile: "9254758888",
     });
 
     expect(updatedUser.name).toBe('Chico Rocha');
     expect(updatedUser.email).toBe('chico@gmail.com');
-    expect(updatedUser.mobile).toBe(9254758888);
+    expect(updatedUser.mobile).toBe('9254758888');
   });
 
   it('should not be able to update a non-existing profile', async () => {
@@ -48,7 +48,7 @@ describe('UpdateProfileService', () => {
         user_id: 'non-existing-profile',
         name: 'Chico Rocha',
         email: 'chico@gmail.com',
-        mobile: 9254759191,
+        mobile: '9254759191',
         password: "123456",
       })
     ).rejects.toBeInstanceOf(AppError);
@@ -59,7 +59,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -69,7 +69,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -80,7 +80,7 @@ describe('UpdateProfileService', () => {
         user_id: 'non-existing-profile',
         name: "Flavio Rocha",
         email: "fmrocha@gmail.com",
-        mobile: 9254759191,
+        mobile: "9254759191",
         password: "123456",
       })
     ).rejects.toBeInstanceOf(AppError);
@@ -91,7 +91,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -101,7 +101,7 @@ describe('UpdateProfileService', () => {
       user_id: user.id,
       name: "Flavio Moura Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password: "123123",
       old_password: "123456",
     });
@@ -114,7 +114,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -125,7 +125,7 @@ describe('UpdateProfileService', () => {
         user_id: 'non-existing-profile',
         name: "Flavio Moura Rocha",
         email: "fmrocha@gmail.com",
-        mobile: 9254759191,
+        mobile: "9254759191",
         password: "123456",
       })
     ).rejects.toBeInstanceOf(AppError);
@@ -136,7 +136,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -147,7 +147,7 @@ describe('UpdateProfileService', () => {
         user_id: 'non-existing-profile',
         name: "Flavio Moura Rocha",
         email: "fmrocha@gmail.com",
-        mobile: 9254759191,
+        mobile: "9254759191",
         old_password: 'wrong-old-password',
         password: '123123',
       })

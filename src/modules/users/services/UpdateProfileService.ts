@@ -10,7 +10,7 @@ interface IRequest {
   user_id: string;
   name: string;
   email: string;
-  mobile: number;
+  mobile: string;
   old_password?: string;
   password?: string;
 }

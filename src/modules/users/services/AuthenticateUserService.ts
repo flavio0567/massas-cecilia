@@ -9,7 +9,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import User from '../infra/typeorm/entities/User';
 
 interface IRequest {
-  mobile: number;
+  mobile: string;
   password: string;
 }
 

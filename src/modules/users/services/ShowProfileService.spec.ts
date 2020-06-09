@@ -18,7 +18,7 @@ describe('UpdateProfileService', () => {
       avatar: "123",
       name: "Flavio Rocha",
       email: "fmrocha@gmail.com",
-      mobile: 9254759191,
+      mobile: "9254759191",
       password_hash: "123456",
       is_admin: 1,
       is_active: 0,
@@ -30,7 +30,7 @@ describe('UpdateProfileService', () => {
 
     expect(showUser.name).toBe('Flavio Rocha');
     expect(showUser.email).toBe('fmrocha@gmail.com');
-    expect(showUser.mobile).toBe(9254759191);
+    expect(showUser.mobile).toBe('9254759191');
     expect(showUser.is_admin).toBe(1);
     expect(showUser.is_active).toBe(0);
   });

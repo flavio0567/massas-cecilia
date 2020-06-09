@@ -10,7 +10,7 @@ interface IRequest {
   avatar: string;
   name: string;
   email: string;
-  mobile: number;
+  mobile: string;
   password: string;
   is_admin: number;
   is_active: number;

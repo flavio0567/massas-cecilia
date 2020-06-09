@@ -28,11 +28,6 @@ export class CreateUsers1591121496309 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'mobile',
-            type: 'bigint',
-            isUnique: true,
-          },
-          {
             name: 'is_admin',
             type: 'tinyint',
             default: 0,
@@ -41,6 +36,11 @@ export class CreateUsers1591121496309 implements MigrationInterface {
             name: 'is_active',
             type: 'tinyint',
             default: 0,
+          },
+          {
+            name: 'mobile',
+            type: 'varchar',
+            isUnique: true,
           },
           {
             name: 'password_hash',

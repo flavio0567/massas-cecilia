@@ -14,7 +14,7 @@ const usersController = new UsersController();
 // usersRouter.use(ensureAuthenticated);
 
 
-usersRouter.get('/', async (req, res) => {
+usersRouter.get('/', ensureAuthenticated, async (req, res) => {
     const { id } = req.params;
 
     const usersRepository = new UsersRepository();
@@ -25,7 +25,7 @@ usersRouter.get('/', async (req, res) => {
 );
 
 usersRouter.get(
-  '/:id',
+  '/:id', ensureAuthenticated,
   celebrate({ [Segments.PARAMS]: { id: Joi.string().required() } }),
   async (req, res) => {
     const { id } = req.params;
@@ -43,7 +43,7 @@ usersRouter.post(
     [Segments.BODY]: {
       avatar: Joi.string(),
       name: Joi.string().required(),
-      mobile: Joi.number().required(),
+      mobile: Joi.string().required(),
       email: Joi.string().email(),
       password: Joi.string().required(),
       password_confirmation: Joi.string().required().valid(Joi.ref('password')),

@@ -22,8 +22,8 @@ class User {
   @Column()
   email: string;
 
-  @Column({ type: "bigint"})
-  mobile: number;
+  @Column()
+  mobile: string;
 
   @Column()
   @Exclude()
