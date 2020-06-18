@@ -14,8 +14,8 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'code',
-            type: 'varchar',
-            isUnique: true
+            type: 'varchar'
+            // isUnique: true
           },
           {
             name: 'name',
@@ -23,8 +23,8 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'barcode',
-            type: 'varchar',
-            isUnique: true
+            type: 'varchar'
+            // isUnique: true
           },
           {
             name: 'unit',
@@ -37,6 +37,11 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           {
             name: 'ncm',
             type: 'int'
+          },
+          {
+            name: 'product_family',
+            type: 'int',
+            isNullable: true
           },
           {
             name: 'is_active',

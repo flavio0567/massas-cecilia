@@ -3,9 +3,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
-
 
 @Entity('products')
 class Product {
@@ -29,6 +28,9 @@ class Product {
 
   @Column()
   ncm: number;
+
+  @Column()
+  product_family: number;
 
   @Column()
   is_active: number;

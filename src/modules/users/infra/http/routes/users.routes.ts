@@ -13,19 +13,18 @@ const usersController = new UsersController();
 
 // usersRouter.use(ensureAuthenticated);
 
-
 usersRouter.get('/', ensureAuthenticated, async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    const usersRepository = new UsersRepository();
-    const user = await usersRepository.findAllUsers();
+  const usersRepository = new UsersRepository();
+  const user = await usersRepository.findAllUsers();
 
-    return res.json({ user: classToClass(user) });
-  }
-);
+  return res.json({ user: classToClass(user) });
+});
 
 usersRouter.get(
-  '/:id', ensureAuthenticated,
+  '/:id',
+  ensureAuthenticated,
   celebrate({ [Segments.PARAMS]: { id: Joi.string().required() } }),
   async (req, res) => {
     const { id } = req.params;
@@ -46,8 +45,10 @@ usersRouter.post(
       mobile: Joi.string().required(),
       email: Joi.string().email(),
       password: Joi.string().required(),
-      password_confirmation: Joi.string().required().valid(Joi.ref('password')),
-    },
+      password_confirmation: Joi.string()
+        .required()
+        .valid(Joi.ref('password'))
+    }
   }),
   usersController.create
 );

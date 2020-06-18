@@ -14,7 +14,15 @@ const productsRouter = Router();
 const upload = multer(uploadConfig);
 const productsController = new ProductsController();
 
-productsRouter.use(ensureAuthenticated);
+// productsRouter.use(ensureAuthenticated);
+
+productsRouter.get('/', async (req, res) => {
+  const productsRepository = new ProductsRepository();
+  const product_family = 1;
+  const product = await productsRepository.findAllProducts(product_family);
+
+  return res.json(product);
+});
 
 productsRouter.get(
   '/:id',
