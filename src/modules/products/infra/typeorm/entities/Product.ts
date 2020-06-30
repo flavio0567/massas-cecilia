@@ -33,6 +33,12 @@ class Product {
   product_family: number;
 
   @Column()
+  category: number;
+
+  @Column()
+  sub_category: number;
+
+  @Column()
   is_active: number;
 
   @Column()

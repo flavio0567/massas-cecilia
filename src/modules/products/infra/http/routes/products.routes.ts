@@ -18,8 +18,22 @@ const productsController = new ProductsController();
 
 productsRouter.get('/', async (req, res) => {
   const productsRepository = new ProductsRepository();
-  const product_family = 1;
+
+  const { product_family } = req.query;
   const product = await productsRepository.findAllProducts(product_family);
+
+  return res.json(product);
+});
+
+productsRouter.get('/category', async (req, res) => {
+  console.log(req.query);
+  const productsRepository = new ProductsRepository();
+
+  const { product_family, category } = req.query;
+  const product = await productsRepository.findAllProductsCategory(
+    product_family,
+    category
+  );
 
   return res.json(product);
 });

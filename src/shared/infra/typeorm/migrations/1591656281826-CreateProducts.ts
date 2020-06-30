@@ -44,6 +44,16 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
             isNullable: true
           },
           {
+            name: 'category',
+            type: 'int',
+            isNullable: true
+          },
+          {
+            name: 'sub_category',
+            type: 'int',
+            isNullable: true
+          },
+          {
             name: 'is_active',
             type: 'varchar',
             default: 0

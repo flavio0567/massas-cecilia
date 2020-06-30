@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, IsNull } from 'typeorm';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ICreateProductDTO from '@modules/products/dtos/ICreateProductDTO';
@@ -16,9 +16,20 @@ class ProductsRepository implements IProductsRepository {
     product_family: number
   ): Promise<Product[] | undefined> {
     const findProduct = await this.ormRepository.find({
-      where: { product_family }
+      where: { product_family, sub_category: null }
     });
 
+    return findProduct;
+  }
+
+  public async findAllProductsCategory(
+    product_family: number,
+    category: number
+  ): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      where: { product_family, category }
+    });
+    console.log(findProduct);
     return findProduct;
   }
 

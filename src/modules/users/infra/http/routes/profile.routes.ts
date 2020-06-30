@@ -17,12 +17,14 @@ profileRouter.put(
     [Segments.BODY]: {
       name: Joi.string().required(),
       mobile: Joi.string().required(),
-      email: Joi.string().email().required(),
+      email: Joi.string().email(),
       password: Joi.string().required(),
-      password_confirmation: Joi.string().required().valid(Joi.ref('password')),
+      password_confirmation: Joi.string()
+        .required()
+        .valid(Joi.ref('password')),
       is_admin: Joi.number().default(0),
-      is_active: Joi.number().default(0),
-    },
+      is_active: Joi.number().default(0)
+    }
   }),
   profileController.update
 );

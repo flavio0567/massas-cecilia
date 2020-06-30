@@ -26,7 +26,7 @@ class UsersRepository implements IUsersRepository {
 
   public async findByMobile(mobile: string): Promise<User | undefined> {
     const findUser = await this.ormRepository.findOne({
-      where: { mobile },
+      where: { mobile }
     });
 
     return findUser;
@@ -34,7 +34,7 @@ class UsersRepository implements IUsersRepository {
 
   public async findByEmail(email: string): Promise<User | undefined> {
     const findUser = await this.ormRepository.findOne({
-      where: { email },
+      where: { email }
     });
 
     return findUser;
@@ -46,7 +46,7 @@ class UsersRepository implements IUsersRepository {
     mobile,
     password_hash,
     is_admin,
-    is_active,
+    is_active
   }: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create({
       name,
@@ -54,7 +54,7 @@ class UsersRepository implements IUsersRepository {
       mobile,
       password_hash,
       is_admin,
-      is_active,
+      is_active
     });
 
     await this.ormRepository.save(user);

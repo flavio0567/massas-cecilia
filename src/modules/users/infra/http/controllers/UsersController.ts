@@ -14,7 +14,7 @@ export default class UsersController {
       mobile,
       password,
       is_admin,
-      is_active,
+      is_active
     } = req.body;
 
     const createUser = container.resolve(CreateUserService);
@@ -26,7 +26,7 @@ export default class UsersController {
       mobile,
       password,
       is_admin,
-      is_active,
+      is_active
     });
 
     return res.json({ user: classToClass(user) });

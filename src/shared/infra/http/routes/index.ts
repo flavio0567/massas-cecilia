@@ -15,5 +15,4 @@ routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 routes.use('/products', productsRouter);
 
-
 export default routes;

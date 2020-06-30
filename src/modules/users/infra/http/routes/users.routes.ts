@@ -11,11 +11,9 @@ import { classToClass } from 'class-transformer';
 const usersRouter = Router();
 const usersController = new UsersController();
 
-// usersRouter.use(ensureAuthenticated);
-
 usersRouter.get('/', ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
-
+  console.log('passei aqui2');
   const usersRepository = new UsersRepository();
   const user = await usersRepository.findAllUsers();
 
@@ -43,7 +41,9 @@ usersRouter.post(
       avatar: Joi.string(),
       name: Joi.string().required(),
       mobile: Joi.string().required(),
-      email: Joi.string().email(),
+      email: Joi.string()
+        .email()
+        .allow(''),
       password: Joi.string().required(),
       password_confirmation: Joi.string()
         .required()

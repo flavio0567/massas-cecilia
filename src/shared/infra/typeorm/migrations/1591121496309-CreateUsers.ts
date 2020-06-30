@@ -1,7 +1,6 @@
-import {MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUsers1591121496309 implements MigrationInterface {
-
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -11,58 +10,57 @@ export class CreateUsers1591121496309 implements MigrationInterface {
             name: 'id',
             type: 'uniqueidentifier',
             isPrimary: true,
-            default: 'newid()',
+            default: 'newid()'
           },
           {
             name: 'avatar',
             type: 'varchar',
-            isNullable: true,
+            isNullable: true
           },
           {
             name: 'name',
-            type: 'varchar',
+            type: 'varchar'
           },
           {
             name: 'email',
             type: 'varchar',
-            isUnique: true,
+            isNullable: true
           },
           {
             name: 'is_admin',
             type: 'tinyint',
-            default: 0,
+            default: 0
           },
           {
             name: 'is_active',
             type: 'tinyint',
-            default: 0,
+            default: 0
           },
           {
             name: 'mobile',
             type: 'varchar',
-            isUnique: true,
+            isUnique: true
           },
           {
             name: 'password_hash',
-            type: 'varchar',
+            type: 'varchar'
           },
           {
             name: 'created_at',
             type: 'datetime2',
-            default: 'sysdatetime()',
+            default: 'sysdatetime()'
           },
           {
             name: 'updated_at',
             type: 'datetime2',
-            default: 'sysdatetime()',
-          },
-        ],
+            default: 'sysdatetime()'
+          }
+        ]
       })
     );
   }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('users');
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('users');
+  }
 }
