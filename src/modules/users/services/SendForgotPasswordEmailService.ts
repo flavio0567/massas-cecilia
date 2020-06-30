@@ -42,16 +42,16 @@ class SendForgotPasswordEmailService {
     await this.mailProvider.sendMail({
       to: {
         name: user.name,
-        email: user.email,
+        email: user.email
       },
-      subject: '[TorreNegra] Recuperação de senha',
+      subject: '[MassasDaCecilia] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
-        },
-      },
+          link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`
+        }
+      }
     });
   }
 }
