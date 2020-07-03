@@ -12,7 +12,7 @@ class Product {
   id: string;
 
   @Column()
-  code: string;
+  code: number;
 
   @Column()
   name: string;

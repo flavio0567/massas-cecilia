@@ -46,16 +46,18 @@ class AuthenticateUserService {
 
     const { secret, expiresIn } = authConfig.jwt;
 
-    if (!secret) { throw new Error('Secret not found.')};
+    if (!secret) {
+      throw new Error('Secret not found.');
+    }
 
     const token = sign({}, secret, {
-      subject: user.id,
-      expiresIn,
+      subject: String(user.id),
+      expiresIn
     });
 
     return {
       user,
-      token,
+      token
     };
   }
 }

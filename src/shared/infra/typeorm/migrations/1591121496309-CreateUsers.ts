@@ -8,12 +8,16 @@ export class CreateUsers1591121496309 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uniqueidentifier',
-            isPrimary: true,
-            default: 'newid()'
+            type: 'serial',
+            isPrimary: true
           },
           {
             name: 'avatar',
+            type: 'varchar',
+            isNullable: true
+          },
+          {
+            name: 'avatar_url',
             type: 'varchar',
             isNullable: true
           },
@@ -28,13 +32,13 @@ export class CreateUsers1591121496309 implements MigrationInterface {
           },
           {
             name: 'is_admin',
-            type: 'tinyint',
+            type: 'smallint',
             default: 0
           },
           {
             name: 'is_active',
-            type: 'tinyint',
-            default: 0
+            type: 'smallint',
+            default: 1
           },
           {
             name: 'mobile',
@@ -47,13 +51,13 @@ export class CreateUsers1591121496309 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           },
           {
             name: 'updated_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           }
         ]
       })

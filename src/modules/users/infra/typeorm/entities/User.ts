@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  OneToMany
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
@@ -37,6 +37,9 @@ class User {
 
   @Column()
   avatar: string;
+
+  @Column()
+  avatar_url: string;
 
   @OneToMany(() => Address, address => address.user)
   addresses: Address[];

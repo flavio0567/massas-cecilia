@@ -8,14 +8,12 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uniqueidentifier',
-            isPrimary: true,
-            default: 'newid()'
+            type: 'serial',
+            isPrimary: true
           },
           {
             name: 'code',
-            type: 'varchar'
-            // isUnique: true
+            type: 'int'
           },
           {
             name: 'name',
@@ -24,7 +22,6 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           {
             name: 'barcode',
             type: 'varchar'
-            // isUnique: true
           },
           {
             name: 'unit',
@@ -32,7 +29,7 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'sales_price',
-            type: 'decimal'
+            type: 'numeric(10,2)'
           },
           {
             name: 'ncm',
@@ -55,8 +52,9 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'is_active',
-            type: 'varchar',
-            default: 0
+            type: 'int',
+            default: 1,
+            isNullable: true
           },
           {
             name: 'avatar',
@@ -64,14 +62,19 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
             isNullable: true
           },
           {
+            name: 'avatar_url',
+            type: 'varchar',
+            isNullable: true
+          },
+          {
             name: 'created_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           },
           {
             name: 'updated_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           }
         ]
       })

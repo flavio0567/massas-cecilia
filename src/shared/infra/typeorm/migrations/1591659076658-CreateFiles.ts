@@ -8,9 +8,8 @@ export default class CreateFiles1591659076658 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uniqueidentifier',
-            isPrimary: true,
-            default: 'newid()'
+            type: 'serial',
+            isPrimary: true
           },
           {
             name: 'name',
@@ -23,13 +22,13 @@ export default class CreateFiles1591659076658 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           },
           {
             name: 'updated_at',
-            type: 'datetime2',
-            default: 'sysdatetime()'
+            type: 'timestamp',
+            default: 'now()'
           }
         ]
       })

@@ -15,9 +15,7 @@ class ProductsRepository implements IProductsRepository {
   public async findAllProducts(
     product_family: number
   ): Promise<Product[] | undefined> {
-    const findProduct = await this.ormRepository.find({
-      where: { product_family, sub_category: null }
-    });
+    const findProduct = await this.ormRepository.find();
 
     return findProduct;
   }
@@ -28,6 +26,18 @@ class ProductsRepository implements IProductsRepository {
   ): Promise<Product[] | undefined> {
     const findProduct = await this.ormRepository.find({
       where: { product_family, category }
+    });
+    console.log(findProduct);
+    return findProduct;
+  }
+
+  public async findAllProductsCategorySubCategory(
+    product_family: number,
+    category: number,
+    sub_category: number
+  ): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      where: { product_family, category, sub_category }
     });
     console.log(findProduct);
     return findProduct;

@@ -38,6 +38,20 @@ productsRouter.get('/category', async (req, res) => {
   return res.json(product);
 });
 
+productsRouter.get('/sub-category', async (req, res) => {
+  console.log(req.query);
+  const productsRepository = new ProductsRepository();
+
+  const { product_family, category, sub_category } = req.query;
+  const product = await productsRepository.findAllProductsCategorySubCategory(
+    product_family,
+    category,
+    sub_category
+  );
+
+  return res.json(product);
+});
+
 productsRouter.get(
   '/:id',
   celebrate({ [Segments.PARAMS]: { id: Joi.string().required() } }),
