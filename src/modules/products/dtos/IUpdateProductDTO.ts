@@ -1,10 +1,7 @@
-export default interface ICreateProductDTO {
-  code: string;
+export default interface IUpdateProductDTO {
   name: string;
-  barcode: number;
   unit: string;
   sales_price: number;
-  ncm: number;
   amount: number;
   is_inactive: number;
   product_family: number;

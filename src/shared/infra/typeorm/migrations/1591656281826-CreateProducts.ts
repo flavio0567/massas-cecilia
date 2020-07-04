@@ -13,7 +13,7 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'code',
-            type: 'int'
+            type: 'varchar'
           },
           {
             name: 'name',
@@ -36,22 +36,30 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
             type: 'int'
           },
           {
-            name: 'product_family',
+            name: 'amount',
             type: 'int',
             isNullable: true
+          },
+          {
+            name: 'product_family',
+            type: 'int',
+            isNullable: true,
+            default: null
           },
           {
             name: 'category',
             type: 'int',
-            isNullable: true
+            isNullable: true,
+            default: null
           },
           {
             name: 'sub_category',
             type: 'int',
-            isNullable: true
+            isNullable: true,
+            default: null
           },
           {
-            name: 'is_active',
+            name: 'is_inactive',
             type: 'int',
             default: 1,
             isNullable: true

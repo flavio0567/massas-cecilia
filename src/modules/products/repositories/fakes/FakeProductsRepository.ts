@@ -31,7 +31,9 @@ class FakeProductsRepository implements IProductsRepository {
   }
 
   public async save(product: Product): Promise<Product> {
-    const findIndex = this.products.findIndex(findProduct => findProduct.id === product.id);
+    const findIndex = this.products.findIndex(
+      findProduct => findProduct.id === product.id
+    );
 
     this.products[findIndex] = product;
 

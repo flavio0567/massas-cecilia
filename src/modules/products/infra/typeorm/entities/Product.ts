@@ -12,7 +12,7 @@ class Product {
   id: string;
 
   @Column()
-  code: number;
+  code: string;
 
   @Column()
   name: string;
@@ -30,6 +30,9 @@ class Product {
   ncm: number;
 
   @Column()
+  amount: number;
+
+  @Column()
   product_family: number;
 
   @Column()
@@ -39,7 +42,7 @@ class Product {
   sub_category: number;
 
   @Column()
-  is_active: number;
+  is_inactive: number;
 
   @Column()
   avatar: string;

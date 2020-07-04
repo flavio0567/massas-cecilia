@@ -22,7 +22,7 @@ describe('CreateProduct', () => {
       unit: 'KG',
       sales_price: 16.9,
       ncm: 19022000,
-      is_active: 0,
+      is_inactive: 0
     });
 
     expect(product).toHaveProperty('id');
@@ -36,7 +36,7 @@ describe('CreateProduct', () => {
       unit: 'KG',
       sales_price: 16.9,
       ncm: 19022000,
-      is_active: 0,
+      is_inactive: 0
     });
 
     await expect(
@@ -47,7 +47,7 @@ describe('CreateProduct', () => {
         unit: 'KG',
         sales_price: 16.9,
         ncm: 19022000,
-        is_active: 0,
+        is_inactive: 0
       })
     ).rejects.toBeInstanceOf(AppError);
   });

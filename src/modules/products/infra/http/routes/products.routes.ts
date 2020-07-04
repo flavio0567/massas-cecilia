@@ -8,6 +8,7 @@ import ProductsRepository from '@modules/products/infra/typeorm/repositories/Pro
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 import ProductsController from '../controllers/ProductsController';
+import UpdateProductService from '@modules/products/services/UpdateProductService';
 import UpdateProductAvatarService from '@modules/products/services/UpdateProductAvatarService';
 
 const productsRouter = Router();
@@ -75,10 +76,31 @@ productsRouter.post(
       unit: Joi.string().required(),
       sales_price: Joi.number().required(),
       ncm: Joi.number().required(),
-      is_active: Joi.number().default(0)
+      is_active: Joi.number().default(0),
+      product_family: Joi.number().required(),
+      category: Joi.number().default(0),
+      sub_category: Joi.number().default(0)
     }
   }),
   productsController.create
+);
+
+productsRouter.put(
+  '/:product_id',
+  ensureAuthenticated,
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      unit: Joi.string().required(),
+      sales_price: Joi.number().required(),
+      amount: Joi.number(),
+      is_inactive: Joi.number(),
+      product_family: Joi.number(),
+      category: Joi.number(),
+      sub_category: Joi.number()
+    }
+  }),
+  productsController.update
 );
 
 productsRouter.patch(

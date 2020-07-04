@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateProductService from '@modules/products/services/CreateProductService.ts';
+import UpdateProductService from '@modules/products/services/UpdateProductService';
 
 export default class ProductsController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -12,7 +13,11 @@ export default class ProductsController {
       unit,
       sales_price,
       ncm,
-      is_active,
+      amount,
+      is_inactive,
+      product_family,
+      category,
+      sub_category
     } = req.body;
 
     const createProduct = container.resolve(CreateProductService);
@@ -24,7 +29,44 @@ export default class ProductsController {
       unit,
       sales_price,
       ncm,
-      is_active,
+      amount,
+      is_inactive,
+      product_family,
+      category,
+      sub_category
+    });
+
+    return res.json(product);
+  }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const {
+      name,
+      unit,
+      sales_price,
+      amount,
+      is_inactive,
+      product_family,
+      category,
+      sub_category
+    } = req.body;
+
+    const { product_id } = req.params;
+
+    const id = Number(product_id);
+
+    const updateProduct = container.resolve(UpdateProductService);
+
+    const product = await updateProduct.execute({
+      id,
+      name,
+      unit,
+      sales_price,
+      amount,
+      is_inactive,
+      product_family,
+      category,
+      sub_category
     });
 
     return res.json(product);

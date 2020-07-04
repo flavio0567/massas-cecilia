@@ -6,12 +6,10 @@ import IProductsRepository from '../repositories/IProductsRepository';
 import Product from '../infra/typeorm/entities/Product';
 
 interface IRequest {
-  code: string;
+  id: number;
   name: string;
-  barcode: number;
   unit: string;
   sales_price: number;
-  ncm: number;
   amount: number;
   is_inactive: number;
   product_family: number;
@@ -20,47 +18,40 @@ interface IRequest {
 }
 
 @injectable()
-class CreateProductService {
+class UpdateProductService {
   constructor(
     @inject('ProductsRepository')
     private productsRepository: IProductsRepository
   ) {}
 
   public async execute({
-    code,
+    id,
     name,
-    barcode,
-    unit,
     sales_price,
-    ncm,
+    unit,
     amount,
     is_inactive,
     product_family,
     category,
     sub_category
   }: IRequest): Promise<Product> {
-    const checkProductExists = await this.productsRepository.findByCode(code);
+    const product = await this.productsRepository.findById(id);
 
-    if (checkProductExists) {
-      throw new AppError('Code already used.', 401);
+    if (!product) {
+      throw new AppError('Product not found.');
     }
 
-    const product = await this.productsRepository.create({
-      code,
-      name,
-      barcode,
-      unit,
-      sales_price,
-      ncm,
-      amount,
-      is_inactive,
-      product_family,
-      category,
-      sub_category
-    });
+    product.name = name;
+    product.unit = unit;
+    product.sales_price = sales_price;
+    product.amount = amount;
+    product.is_inactive = is_inactive;
+    product.product_family = product_family;
+    product.category = category;
+    product.sub_category = sub_category;
 
-    return product;
+    return this.productsRepository.save(product);
   }
 }
 
-export default CreateProductService;
+export default UpdateProductService;

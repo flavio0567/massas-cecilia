@@ -12,9 +12,7 @@ class ProductsRepository implements IProductsRepository {
     this.ormRepository = getRepository(Product);
   }
 
-  public async findAllProducts(
-    product_family: number
-  ): Promise<Product[] | undefined> {
+  public async findAllProducts(): Promise<Product[] | undefined> {
     const findProduct = await this.ormRepository.find();
 
     return findProduct;
@@ -43,12 +41,11 @@ class ProductsRepository implements IProductsRepository {
     return findProduct;
   }
 
-  public async findById(id: string): Promise<Product | undefined> {
+  public async findById(id: number): Promise<Product | undefined> {
     const findProduct = await this.ormRepository.findOne(id);
 
     return findProduct;
   }
-
   public async findByCode(code: string): Promise<Product | undefined> {
     const findProduct = await this.ormRepository.findOne({
       where: { code }
@@ -60,20 +57,26 @@ class ProductsRepository implements IProductsRepository {
   public async create({
     code,
     name,
-    barcode,
     unit,
     sales_price,
+    barcode,
     ncm,
-    is_active
+    is_inactive,
+    product_family,
+    category,
+    sub_category
   }: ICreateProductDTO): Promise<Product> {
     const product = this.ormRepository.create({
       code,
       name,
-      barcode,
       unit,
       sales_price,
+      barcode,
       ncm,
-      is_active
+      is_inactive,
+      product_family,
+      category,
+      sub_category
     });
 
     await this.ormRepository.save(product);
