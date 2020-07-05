@@ -7,5 +7,6 @@ export default interface IProductsRepository {
   findById(id: number): Promise<Product | undefined>;
   findByCode(code: string): Promise<Product | undefined>;
   create(data: ICreateProductDTO): Promise<Product>;
+  update(data: ICreateProductDTO): Promise<Product | undefined>;
   save(product: Product): Promise<Product>;
 }

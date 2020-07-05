@@ -3,9 +3,9 @@ export default interface ICreateProductDTO {
   name: string;
   barcode: number;
   unit: string;
+  amount: number;
   sales_price: number;
   ncm: number;
-  amount: number;
   is_inactive: number;
   product_family: number;
   category: number;

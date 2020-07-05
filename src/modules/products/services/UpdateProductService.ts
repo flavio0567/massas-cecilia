@@ -38,7 +38,7 @@ class UpdateProductService {
     const product = await this.productsRepository.findById(id);
 
     if (!product) {
-      throw new AppError('Product not found.');
+      throw new AppError('Product not found.', 401);
     }
 
     product.name = name;
@@ -50,7 +50,9 @@ class UpdateProductService {
     product.category = category;
     product.sub_category = sub_category;
 
-    return this.productsRepository.save(product);
+    await this.productsRepository.update(product);
+
+    return product;
   }
 }
 
