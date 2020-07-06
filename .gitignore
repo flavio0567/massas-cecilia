@@ -6,9 +6,12 @@ temp/
 .env
 coverage
 ormconfig.json
+dist
+
 tmp/*
 !tmp/.gitkeep
 
 pg_hba.conf
 
 babel.config.js
+

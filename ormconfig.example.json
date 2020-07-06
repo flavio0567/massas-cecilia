@@ -6,7 +6,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "docker",
-    "database": "gostack",
+    "database": "test",
     "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
     "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
     "cli": {
@@ -19,7 +19,7 @@
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,
-    "database": "gostack",
+    "database": "test",
     "useUnifiedTopology": true
   }
 ]
