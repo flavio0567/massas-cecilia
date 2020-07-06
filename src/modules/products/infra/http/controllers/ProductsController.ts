@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateProductService from '@modules/products/services/CreateProductService.ts';
+import CreateProductService from '@modules/products/services/CreateProductService';
 import UpdateProductService from '@modules/products/services/UpdateProductService';
 
 export default class ProductsController {
@@ -53,7 +53,7 @@ export default class ProductsController {
 
     const { product_id } = req.params;
 
-    const id = Number(product_id);
+    const id = product_id;
 
     const updateProduct = container.resolve(UpdateProductService);
 

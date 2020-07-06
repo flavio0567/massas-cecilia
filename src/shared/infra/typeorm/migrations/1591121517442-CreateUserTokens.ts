@@ -9,16 +9,18 @@ export default class CreateUserTokens1591121517442
         columns: [
           {
             name: 'id',
-            type: 'serial',
-            isPrimary: true
+            type: 'varchar',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'user_id',
-            type: 'serial'
+            type: 'varchar'
           },
           {
             name: 'token',
-            type: 'uuid',
+            type: 'varchar',
             generationStrategy: 'uuid'
           },
           {

@@ -8,14 +8,11 @@ import ProductsRepository from '@modules/products/infra/typeorm/repositories/Pro
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 import ProductsController from '../controllers/ProductsController';
-import UpdateProductService from '@modules/products/services/UpdateProductService';
 import UpdateProductAvatarService from '@modules/products/services/UpdateProductAvatarService';
 
 const productsRouter = Router();
 const upload = multer(uploadConfig);
 const productsController = new ProductsController();
-
-// productsRouter.use(ensureAuthenticated);
 
 productsRouter.get('/', async (req, res) => {
   const productsRepository = new ProductsRepository();
@@ -29,10 +26,10 @@ productsRouter.get('/category', async (req, res) => {
   console.log(req.query);
   const productsRepository = new ProductsRepository();
 
-  const { product_family, category } = req.query;
+  const { product_family, category } = req.params;
   const product = await productsRepository.findAllProductsCategory(
-    product_family,
-    category
+    Number(product_family),
+    Number(category)
   );
 
   return res.json(product);
@@ -43,10 +40,11 @@ productsRouter.get('/sub-category', async (req, res) => {
   const productsRepository = new ProductsRepository();
 
   const { product_family, category, sub_category } = req.query;
+
   const product = await productsRepository.findAllProductsCategorySubCategory(
-    product_family,
-    category,
-    sub_category
+    Number(product_family),
+    Number(category),
+    Number(sub_category)
   );
 
   return res.json(product);
@@ -71,11 +69,12 @@ productsRouter.post(
     [Segments.BODY]: {
       code: Joi.string().required(),
       name: Joi.string().required(),
-      barcode: Joi.number().required(),
-      unit: Joi.string().required(),
       sales_price: Joi.number().required(),
-      ncm: Joi.number().required(),
-      is_active: Joi.number().default(0),
+      unit: Joi.string().required(),
+      amount: Joi.string().default(0),
+      barcode: Joi.number(),
+      ncm: Joi.number(),
+      is_inactive: Joi.number().default(0),
       product_family: Joi.number().required(),
       category: Joi.number().default(0),
       sub_category: Joi.number().default(0)

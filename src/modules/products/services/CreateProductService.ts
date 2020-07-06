@@ -8,9 +8,9 @@ import Product from '../infra/typeorm/entities/Product';
 interface IRequest {
   code: string;
   name: string;
-  barcode: number;
-  unit: string;
   sales_price: number;
+  unit: string;
+  barcode: number;
   ncm: number;
   amount: number;
   is_inactive: number;

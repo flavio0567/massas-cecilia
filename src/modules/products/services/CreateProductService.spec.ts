@@ -18,11 +18,15 @@ describe('CreateProduct', () => {
     const product = await createProduct.execute({
       code: '1',
       name: 'MASSA CONCHIGLIONE',
-      barcode: 1,
-      unit: 'KG',
       sales_price: 16.9,
+      unit: 'KG',
+      amount: 10,
+      barcode: 1,
       ncm: 19022000,
-      is_inactive: 0
+      is_inactive: 0,
+      product_family: 1,
+      category: 1,
+      sub_category: 1
     });
 
     expect(product).toHaveProperty('id');
@@ -32,22 +36,30 @@ describe('CreateProduct', () => {
     await createProduct.execute({
       code: '1',
       name: 'MASSA CONCHIGLIONE',
-      barcode: 1,
-      unit: 'KG',
       sales_price: 16.9,
+      unit: 'KG',
+      amount: 10,
+      barcode: 1,
       ncm: 19022000,
-      is_inactive: 0
+      is_inactive: 0,
+      product_family: 1,
+      category: 1,
+      sub_category: 1
     });
 
     await expect(
       createProduct.execute({
         code: '1',
         name: 'MASSA CONCHIGLIONE',
-        barcode: 1,
-        unit: 'KG',
         sales_price: 16.9,
+        unit: 'KG',
+        amount: 10,
+        barcode: 1,
         ncm: 19022000,
-        is_inactive: 0
+        is_inactive: 0,
+        product_family: 1,
+        category: 1,
+        sub_category: 1
       })
     ).rejects.toBeInstanceOf(AppError);
   });

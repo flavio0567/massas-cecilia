@@ -8,8 +8,10 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'serial',
-            isPrimary: true
+            type: 'varchar',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'code',
@@ -17,10 +19,6 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
           },
           {
             name: 'name',
-            type: 'varchar'
-          },
-          {
-            name: 'barcode',
             type: 'varchar'
           },
           {
@@ -32,35 +30,42 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
             type: 'numeric(10,2)'
           },
           {
-            name: 'ncm',
-            type: 'int'
+            name: 'barcode',
+            type: 'varchar',
+            isNullable: true
           },
           {
-            name: 'amount',
+            name: 'ncm',
             type: 'int',
             isNullable: true
           },
           {
-            name: 'product_family',
+            name: 'amount',
             type: 'int',
+            isNullable: true,
+            default: null
+          },
+          {
+            name: 'product_family',
+            type: 'smallint',
             isNullable: true,
             default: null
           },
           {
             name: 'category',
-            type: 'int',
+            type: 'smallint',
             isNullable: true,
             default: null
           },
           {
             name: 'sub_category',
-            type: 'int',
+            type: 'smallint',
             isNullable: true,
             default: null
           },
           {
             name: 'is_inactive',
-            type: 'int',
+            type: 'smallint',
             default: 1,
             isNullable: true
           },

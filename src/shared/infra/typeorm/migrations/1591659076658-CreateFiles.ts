@@ -8,8 +8,10 @@ export default class CreateFiles1591659076658 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'serial',
-            isPrimary: true
+            type: 'varchar',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'name',

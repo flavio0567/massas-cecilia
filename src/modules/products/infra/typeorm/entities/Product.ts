@@ -18,13 +18,13 @@ class Product {
   name: string;
 
   @Column()
-  barcode: number;
+  sales_price: number;
 
   @Column()
   unit: string;
 
   @Column()
-  sales_price: number;
+  barcode: number;
 
   @Column()
   ncm: number;

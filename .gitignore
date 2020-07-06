@@ -8,3 +8,7 @@ coverage
 ormconfig.json
 tmp/*
 !tmp/.gitkeep
+
+pg_hba.conf
+
+babel.config.js

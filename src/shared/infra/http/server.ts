@@ -15,7 +15,11 @@ import '@shared/container';
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.APP_WEB_URL
+  })
+);
 app.use('/files', express.static(uploadConfig.directory));
 app.use(express.json());
 app.use(routes);

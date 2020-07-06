@@ -6,7 +6,7 @@ import IProductsRepository from '../repositories/IProductsRepository';
 import Product from '../infra/typeorm/entities/Product';
 
 interface IRequest {
-  id: number;
+  id: string;
   name: string;
   unit: string;
   sales_price: number;

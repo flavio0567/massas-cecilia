@@ -41,7 +41,10 @@ class User {
   @Column()
   avatar_url: string;
 
-  @OneToMany(() => Address, address => address.user)
+  @OneToMany(
+    () => Address,
+    address => address.user
+  )
   addresses: Address[];
 
   @CreateDateColumn()

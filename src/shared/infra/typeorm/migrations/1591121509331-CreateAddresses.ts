@@ -14,12 +14,14 @@ export default class CreateAddresses1591121509331
         columns: [
           {
             name: 'id',
-            type: 'serial',
-            isPrimary: true
+            type: 'varchar',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'user_id',
-            type: 'serial'
+            type: 'varchar'
           },
           {
             name: 'address1',
@@ -27,7 +29,7 @@ export default class CreateAddresses1591121509331
           },
           {
             name: 'address2',
-            type: 'varchar(255)',
+            type: 'varchar(100)',
             isNullable: true
           },
           {
