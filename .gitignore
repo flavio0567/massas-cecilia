@@ -13,5 +13,3 @@ tmp/*
 
 pg_hba.conf
 
-babel.config.js
-
