@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
+import { classToClass } from 'class-transformer';
 import CreateProductService from '@modules/products/services/CreateProductService';
 import UpdateProductService from '@modules/products/services/UpdateProductService';
 
@@ -36,7 +36,7 @@ export default class ProductsController {
       sub_category
     });
 
-    return res.json(product);
+    return res.json({ product: classToClass(product) });
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
@@ -50,7 +50,7 @@ export default class ProductsController {
       category,
       sub_category
     } = req.body;
-
+    console.log(req.body);
     const { product_id } = req.params;
 
     const id = product_id;
@@ -69,6 +69,6 @@ export default class ProductsController {
       sub_category
     });
 
-    return res.json(product);
+    return res.json({ product: classToClass(product) });
   }
 }

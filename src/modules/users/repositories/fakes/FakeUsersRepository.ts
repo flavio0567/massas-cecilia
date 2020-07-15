@@ -8,7 +8,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
-  public async findAllUsers(): Promise<User[] | undefined> {
+  public async findUsers(): Promise<User[] | undefined> {
     const { users } = this;
 
     return users;
@@ -19,7 +19,6 @@ class FakeUsersRepository implements IUsersRepository {
 
     return findUser;
   }
-
 
   public async findByMobile(mobile: string): Promise<User | undefined> {
     const findUser = this.users.find(user => user.mobile === mobile);

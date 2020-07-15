@@ -4,7 +4,6 @@ import { getRepository } from 'typeorm';
 
 import uploadConfig from '../../../config/upload';
 import Product from '../infra/typeorm/entities/Product';
-import { fstat } from 'fs';
 
 interface Request {
   product_id: string;
@@ -18,10 +17,14 @@ class UpdateProductAvatarService {
   }: Request): Promise<Product> {
     const productsRepository = getRepository(Product);
 
-    const product = await productsRepository.findOne(product_id);
+    const product = await productsRepository.findOne({
+      where: { id: product_id }
+    });
 
     if (!product) {
-      throw new Error('Only authenticated user can update a product avatar.');
+      throw new Error(
+        'Only authenticated user can update a product family avatar.'
+      );
     }
 
     if (product.avatar) {

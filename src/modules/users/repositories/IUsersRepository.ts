@@ -2,7 +2,7 @@ import User from '../infra/typeorm/entities/User';
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
 export default interface IUsersRepository {
-  findAllUsers(): Promise<User[] | undefined>;
+  findUsers(): Promise<User[] | undefined>;
   findById(id: string): Promise<User | undefined>;
   findByMobile(mobile: string): Promise<User | undefined>;
   findByEmail(email: string): Promise<User | undefined>;

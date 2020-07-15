@@ -2,7 +2,7 @@ import Product from '../infra/typeorm/entities/Product';
 import ICreateProductDTO from '../dtos/ICreateProductDTO';
 
 export default interface IProductsRepository {
-  findAllProducts(): Promise<Product[] | undefined>;
+  findProducts(): Promise<Product[] | undefined>;
   findById(id: string): Promise<Product | undefined>;
   findByCode(code: string): Promise<Product | undefined>;
   create(data: ICreateProductDTO): Promise<Product>;

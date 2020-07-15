@@ -7,7 +7,7 @@ import {
   OneToMany
 } from 'typeorm';
 
-import { Exclude } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 import Address from './Address';
 
@@ -38,8 +38,12 @@ class User {
   @Column()
   avatar: string;
 
-  @Column()
-  avatar_url: string;
+  @Expose({ name: 'avatar_url' })
+  getAvatarUrl(): string | null {
+    return this.avatar
+      ? `${process.env.APP_API_URL}/files/${this.avatar}`
+      : null;
+  }
 
   @OneToMany(
     () => Address,

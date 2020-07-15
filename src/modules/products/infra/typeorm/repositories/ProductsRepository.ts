@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Raw } from 'typeorm';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ICreateProductDTO from '@modules/products/dtos/ICreateProductDTO';
@@ -12,7 +12,7 @@ class ProductsRepository implements IProductsRepository {
     this.ormRepository = getRepository(Product);
   }
 
-  public async findAllProducts(): Promise<Product[] | undefined> {
+  public async findProducts(): Promise<Product[] | undefined> {
     const findProduct = await this.ormRepository.find({
       order: {
         name: 'ASC'
@@ -21,24 +21,49 @@ class ProductsRepository implements IProductsRepository {
     return findProduct;
   }
 
-  public async findAllProductsCategory(
+  public async findFamilyProducts(): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      where: {
+        product_family: Raw(family => `${family} > 0`),
+        category: 0,
+        sub_category: 0
+      },
+      order: {
+        product_family: 'ASC'
+      }
+    });
+    return findProduct;
+  }
+
+  public async findProductsCategory(
+    product_family: number
+  ): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      where: {
+        product_family,
+        category: Raw(family => `${family} > 0`),
+        sub_category: Raw(family => `${family} = 0`)
+      },
+      order: {
+        category: 'ASC'
+      }
+    });
+    return findProduct;
+  }
+
+  public async findProductsSubCategory(
     product_family: number,
     category: number
   ): Promise<Product[] | undefined> {
     const findProduct = await this.ormRepository.find({
-      where: { product_family, category }
-    });
-    console.log(findProduct);
-    return findProduct;
-  }
-
-  public async findAllProductsCategorySubCategory(
-    product_family: number,
-    category: number,
-    sub_category: number
-  ): Promise<Product[] | undefined> {
-    const findProduct = await this.ormRepository.find({
-      where: { product_family, category, sub_category }
+      where: {
+        product_family,
+        category,
+        sub_category: Raw(sub_category => `${sub_category} > 0`)
+      },
+      order: {
+        product_family: 'ASC'
+      }
     });
     return findProduct;
   }
