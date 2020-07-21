@@ -15,7 +15,8 @@ import UpdateProductAvatarService from '@modules/products/services/UpdateProduct
 import ActivateProductController from '../controllers/ActivateProductController';
 
 const productsRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
+
 const productsController = new ProductsController();
 const activateProductController = new ActivateProductController();
 

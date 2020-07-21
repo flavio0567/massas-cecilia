@@ -13,7 +13,7 @@ const usersController = new UsersController();
 
 usersRouter.get('/', ensureAuthenticated, async (req, res) => {
   const { id } = req.params;
-  console.log('passei aqui2');
+
   const usersRepository = new UsersRepository();
   const user = await usersRepository.findUsers();
 

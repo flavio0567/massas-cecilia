@@ -1,5 +1,6 @@
 import path from 'path';
-import fs from 'fs';
+import fs, { promises } from 'fs';
+
 import { getRepository } from 'typeorm';
 
 import uploadConfig from '../../../config/upload';
@@ -14,26 +15,22 @@ class UpdateProductAvatarService {
   public async execute({
     product_id,
     avatarFilename
-  }: Request): Promise<Product> {
+  }: Request): Promise<Product | undefined> {
     const productsRepository = getRepository(Product);
 
-    const product = await productsRepository.findOne({
-      where: { id: product_id }
-    });
+    const product = await productsRepository.findOne(product_id);
 
     if (!product) {
-      throw new Error(
-        'Only authenticated user can update a product family avatar.'
-      );
+      throw new Error('Only authenticated user can update a product avatar.');
     }
 
     if (product.avatar) {
       const productAvatarFilePath = path.join(
-        uploadConfig.directory,
+        uploadConfig.tmpFolder,
         product.avatar
       );
 
-      const productAvatarFileExists = await fs.promises.stat(
+      const productAvatarFileExists = await promises.stat(
         productAvatarFilePath
       );
 
@@ -49,5 +46,14 @@ class UpdateProductAvatarService {
     return product;
   }
 }
-
 export default UpdateProductAvatarService;
+
+// try {
+//   const productAvatarFileExists = await fs.promises.stat(
+//     productAvatarFilePath
+//   );
+//   console.log(productAvatarFileExists);
+//   await fs.promises.unlink(productAvatarFilePath);
+// } catch (err) {
+//   console.log('Error in checking product exists:', err);
+// }

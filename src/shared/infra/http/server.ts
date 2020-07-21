@@ -2,12 +2,12 @@ import 'reflect-metadata';
 import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
-import cors from 'cors';
 import { errors } from 'celebrate';
 import 'express-async-errors';
 
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
+import rateLimiter from '../http/middleware/rateLimiter';
 import uploadConfig from '../../../config/upload';
 
 import '@shared/infra/typeorm';
@@ -15,13 +15,23 @@ import '@shared/container';
 
 const app = express();
 
-app.use(
-  cors({
-    origin: process.env.APP_WEB_URL
-  })
-);
-app.use('/files', express.static(uploadConfig.directory));
+app.use(rateLimiter);
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE');
+    return res.status(200).json({});
+  }
+  next();
+});
+
 app.use(express.json());
+app.use('/files', express.static(uploadConfig.tmpFolder));
 app.use(routes);
 
 app.use(errors());

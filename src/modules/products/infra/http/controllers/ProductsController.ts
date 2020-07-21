@@ -50,7 +50,7 @@ export default class ProductsController {
       category,
       sub_category
     } = req.body;
-    console.log(req.body);
+
     const { product_id } = req.params;
 
     const id = product_id;
