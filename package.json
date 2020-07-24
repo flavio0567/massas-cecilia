@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "bee-queue": "^1.2.3",
     "celebrate": "^12.1.1",
+    "cep-promise": "^3.0.9",
     "class-transformer": "^0.2.3",
     "cors": "^2.8.5",
     "date-fns": "^2.0.0-beta.5",

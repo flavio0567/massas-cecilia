@@ -1,15 +1,34 @@
 import { getRepository, Repository } from 'typeorm';
+import cep from 'cep-promise';
 
-import IUserAddressesRepository from '@modules/users/repositories/IUserAddressesRepository';
+import IUsersAddressRepository from '@modules/users/repositories/IUsersAddressRepository';
 import ICreateUserAddressDTO from '@modules/users/dtos/ICreateUserAddressDTO';
 
 import Address from '../entities/Address';
 
-class UserAddressesRepository implements IUserAddressesRepository {
+interface CEP {
+  cep: string | number;
+  state: string;
+  city: string;
+  street: string;
+  neighborhood: string;
+}
+
+class UsersAddressRepository implements IUsersAddressRepository {
   private ormRepository: Repository<Address>;
 
   constructor() {
     this.ormRepository = getRepository(Address);
+  }
+
+  public async findByCep(userCep: string | number): Promise<CEP | null | void> {
+    let findAddress: CEP | null | void;
+
+    findAddress = await cep(userCep).then(response => {
+      console.log(response);
+    });
+
+    return findAddress;
   }
 
   public async findById(id: string): Promise<Address | undefined> {
@@ -20,19 +39,19 @@ class UserAddressesRepository implements IUserAddressesRepository {
 
   public async create({
     user_id,
-    street_1,
-    street_2,
+    address1,
+    address2,
     city,
     state,
-    zip_code,
+    zip_code
   }: ICreateUserAddressDTO): Promise<Address> {
     const address = this.ormRepository.create({
       user_id,
-      street_1,
-      street_2,
+      address1,
+      address2,
       city,
       state,
-      zip_code,
+      zip_code
     });
 
     await this.ormRepository.save(address);
@@ -45,4 +64,4 @@ class UserAddressesRepository implements IUserAddressesRepository {
   }
 }
 
-export default UserAddressesRepository;
+export default UsersAddressRepository;

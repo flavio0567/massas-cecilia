@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  JoinColumn,
+  JoinColumn
 } from 'typeorm';
 
 import User from './User';
@@ -19,10 +19,10 @@ class Address {
   user_id: string;
 
   @Column()
-  street_1: string;
+  address1: string;
 
   @Column()
-  street_2: string;
+  address2: string;
 
   @Column()
   city: string;
@@ -33,7 +33,10 @@ class Address {
   @Column()
   zip_code: string;
 
-  @ManyToOne(() => User, user => user.addresses)
+  @ManyToOne(
+    () => User,
+    user => user.addresses
+  )
   @JoinColumn({ name: 'user_id' })
   user: User;
 

@@ -37,7 +37,6 @@ productsRouter.get('/family', async (req, res) => {
 });
 
 productsRouter.get('/category', async (req, res) => {
-  console.log(req.query);
   const productsRepository = new ProductsRepository();
 
   const { product_family } = req.query;
@@ -49,7 +48,6 @@ productsRouter.get('/category', async (req, res) => {
 });
 
 productsRouter.get('/sub-category', async (req, res) => {
-  console.log(req.query);
   const productsRepository = new ProductsRepository();
 
   const { product_family, category } = req.query;

@@ -6,8 +6,8 @@ import './providers';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
-import IUserAddressRepository from '@modules/users/repositories/IUserAddressesRepository';
-import UserAddressRepository from '@modules/users/infra/typeorm/repositories/UserAddressesRepository';
+import IUsersAddressRepository from '@modules/users/repositories/IUsersAddressRepository';
+import UsersAddressRepository from '@modules/users/infra/typeorm/repositories/UsersAddressRepository';
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
@@ -23,9 +23,9 @@ container.registerSingleton<IUsersRepository>(
   UsersRepository
 );
 
-container.registerSingleton<IUserAddressRepository>(
-  'UserAddressRepository',
-  UserAddressRepository
+container.registerSingleton<IUsersAddressRepository>(
+  'UsersAddressRepository',
+  UsersAddressRepository
 );
 
 container.registerSingleton<IUserTokensRepository>(

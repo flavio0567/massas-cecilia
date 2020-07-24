@@ -47,13 +47,3 @@ class UpdateProductAvatarService {
   }
 }
 export default UpdateProductAvatarService;
-
-// try {
-//   const productAvatarFileExists = await fs.promises.stat(
-//     productAvatarFilePath
-//   );
-//   console.log(productAvatarFileExists);
-//   await fs.promises.unlink(productAvatarFilePath);
-// } catch (err) {
-//   console.log('Error in checking product exists:', err);
-// }
