@@ -73,6 +73,20 @@ productsRouter.get(
   }
 );
 
+productsRouter.get(
+  '/code/:code',
+  ensureAuthenticated,
+  celebrate({ [Segments.PARAMS]: { code: Joi.number().required() } }),
+  async (req, res) => {
+    const { code } = req.params;
+    console.log(code);
+    const productsRepository = new ProductsRepository();
+    const product = await productsRepository.findByCode(code);
+
+    return res.json({ product: classToClass(product) });
+  }
+);
+
 productsRouter.post(
   '/',
   celebrate({

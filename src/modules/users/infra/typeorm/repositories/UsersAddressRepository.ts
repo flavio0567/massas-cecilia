@@ -24,9 +24,7 @@ class UsersAddressRepository implements IUsersAddressRepository {
   public async findByCep(userCep: string | number): Promise<CEP | null | void> {
     let findAddress: CEP | null | void;
 
-    findAddress = await cep(userCep).then(response => {
-      console.log(response);
-    });
+    findAddress = await cep(userCep);
 
     return findAddress;
   }
