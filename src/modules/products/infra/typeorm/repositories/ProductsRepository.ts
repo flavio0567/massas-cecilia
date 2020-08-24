@@ -26,7 +26,8 @@ class ProductsRepository implements IProductsRepository {
       where: {
         product_family: Raw(family => `${family} > 0`),
         category: 0,
-        sub_category: 0
+        sub_category: 0,
+        is_inactive: 0
       },
       order: {
         product_family: 'ASC'
@@ -42,7 +43,8 @@ class ProductsRepository implements IProductsRepository {
       where: {
         product_family,
         category: Raw(family => `${family} > 0`),
-        sub_category: Raw(family => `${family} = 0`)
+        sub_category: Raw(family => `${family} = 0`),
+        is_inactive: 0
       },
       order: {
         category: 'ASC'
@@ -59,7 +61,8 @@ class ProductsRepository implements IProductsRepository {
       where: {
         product_family,
         category,
-        sub_category: Raw(sub_category => `${sub_category} > 0`)
+        sub_category: Raw(sub_category => `${sub_category} > 0`),
+        is_inactive: 0
       },
       order: {
         product_family: 'ASC'
@@ -76,7 +79,7 @@ class ProductsRepository implements IProductsRepository {
 
   public async findByCode(code: string): Promise<Product | undefined> {
     const findProduct = await this.ormRepository.findOne({
-      where: { code }
+      where: { code, is_inactive: 0 }
     });
 
     return findProduct;

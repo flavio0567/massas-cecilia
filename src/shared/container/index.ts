@@ -15,6 +15,12 @@ import UserTokensRepository from '@modules/users/infra/typeorm/repositories/User
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 
+import IOrdersRepository from '@modules/orders/repositories/IOrdersRepository';
+import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
+
+import IOrdersDetailRepository from '@modules/orders/repositories/IOrdersDetailRepository';
+import OrdersDetailRepository from '@modules/orders/infra/typeorm/repositories/OrdersDetailRepository';
+
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import NotificationRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
 
@@ -36,6 +42,16 @@ container.registerSingleton<IUserTokensRepository>(
 container.registerSingleton<IProductsRepository>(
   'ProductsRepository',
   ProductsRepository
+);
+
+container.registerSingleton<IOrdersRepository>(
+  'OrdersRepository',
+  OrdersRepository
+);
+
+container.registerSingleton<IOrdersDetailRepository>(
+  'OrdersRepository',
+  OrdersDetailRepository
 );
 
 container.registerSingleton<INotificationsRepository>(

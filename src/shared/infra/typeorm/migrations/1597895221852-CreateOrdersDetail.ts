@@ -5,12 +5,12 @@ import {
   TableForeignKey
 } from 'typeorm';
 
-export default class CreateAddresses1591121509331
+export default class CreateOrdersDetail1597895221852
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'addresses',
+        name: 'ordersdetail',
         columns: [
           {
             name: 'id',
@@ -20,29 +20,28 @@ export default class CreateAddresses1591121509331
             default: 'uuid_generate_v4()'
           },
           {
-            name: 'user_id',
+            name: 'order_id',
             type: 'varchar'
           },
           {
-            name: 'address1',
-            type: 'varchar(255)'
-          },
-          {
-            name: 'address2',
-            type: 'varchar(100)',
-            isNullable: true
-          },
-          {
-            name: 'city',
+            name: 'product_id',
             type: 'varchar'
           },
           {
-            name: 'state',
-            type: 'varchar'
+            name: ' sales_price',
+            type: 'int'
           },
           {
-            name: 'zip_code',
-            type: 'varchar'
+            name: 'unit',
+            type: 'varchar(100)'
+          },
+          {
+            name: 'amount',
+            type: 'int'
+          },
+          {
+            name: 'quantity',
+            type: 'int'
           },
           {
             name: 'created_at',
@@ -59,12 +58,12 @@ export default class CreateAddresses1591121509331
     );
 
     await queryRunner.createForeignKey(
-      'addresses',
+      'ordersdetail',
       new TableForeignKey({
-        name: 'AddressUser',
-        columnNames: ['user_id'],
+        name: 'DetailOrder',
+        columnNames: ['order_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'users',
+        referencedTableName: 'orders',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       })
@@ -72,8 +71,8 @@ export default class CreateAddresses1591121509331
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('addresses', 'AddressUser');
+    await queryRunner.dropForeignKey('ordersdetail', 'DetailOrder');
 
-    await queryRunner.dropTable('addresses');
+    await queryRunner.dropTable('ordersdetail');
   }
 }

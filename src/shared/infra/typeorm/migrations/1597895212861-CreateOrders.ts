@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUsers1591121496309 implements MigrationInterface {
+export default class CreateOrders1597895212861 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'orders',
         columns: [
           {
             name: 'id',
@@ -14,46 +14,48 @@ export class CreateUsers1591121496309 implements MigrationInterface {
             default: 'uuid_generate_v4()'
           },
           {
-            name: 'avatar',
-            type: 'varchar',
-            isNullable: true
-          },
-          {
-            name: 'avatar_url',
-            type: 'varchar',
-            isNullable: true
-          },
-          {
-            name: 'name',
+            name: 'delivery_name',
             type: 'varchar'
           },
           {
-            name: 'email',
+            name: 'delivery_address1',
             type: 'varchar',
             isNullable: true
           },
           {
-            name: 'is_admin',
-            type: 'smallint',
-            default: 0
-          },
-          {
-            name: 'is_active',
-            type: 'smallint',
-            default: 1
-          },
-          {
-            name: 'mobile',
-            type: 'varchar',
-            isUnique: true
-          },
-          {
-            name: 'password_hash',
+            name: 'delivery_address2',
             type: 'varchar',
             isNullable: true
           },
           {
-            name: 'contact_agreed',
+            name: 'delivery_city',
+            type: 'varchar',
+            isNullable: true
+          },
+          {
+            name: 'delivery_state',
+            type: 'varchar',
+            isNullable: true
+          },
+          {
+            name: 'delivery_zip_code',
+            type: 'varchar',
+            isNullable: true
+          },
+          {
+            name: 'delivery_date',
+            type: 'timestamp'
+          },
+          {
+            name: 'delivery_time',
+            type: 'varchar'
+          },
+          {
+            name: 'order_total',
+            type: 'int'
+          },
+          {
+            name: 'is_delivered',
             type: 'smallint',
             default: 0
           },
@@ -73,6 +75,6 @@ export class CreateUsers1591121496309 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('orders');
   }
 }

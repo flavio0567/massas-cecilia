@@ -7,7 +7,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { classToClass } from 'class-transformer';
 
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
-import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
 
 import ProductsController from '../controllers/ProductsController';
 import UpdateProductAvatarService from '@modules/products/services/UpdateProductAvatarService';
@@ -75,11 +75,10 @@ productsRouter.get(
 
 productsRouter.get(
   '/code/:code',
-  ensureAuthenticated,
+  // ensureAuthenticated,
   celebrate({ [Segments.PARAMS]: { code: Joi.number().required() } }),
   async (req, res) => {
     const { code } = req.params;
-    console.log(code);
     const productsRepository = new ProductsRepository();
     const product = await productsRepository.findByCode(code);
 
