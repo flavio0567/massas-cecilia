@@ -15,10 +15,13 @@ class Order {
   id: string;
 
   @Column()
-  user_id: string;
+  delivery_name: string;
 
   @Column()
-  delivery_name: string;
+  delivery_mobile: string;
+
+  @Column()
+  is_order_delivering: number;
 
   @Column()
   delivery_address1: string;
@@ -49,7 +52,7 @@ class Order {
 
   @OneToMany(
     () => Orderdetail,
-    ordersdetail => ordersdetail.order
+    orderdetail => orderdetail.order
   )
   ordersdetail: Orderdetail[];
 

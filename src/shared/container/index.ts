@@ -50,7 +50,7 @@ container.registerSingleton<IOrdersRepository>(
 );
 
 container.registerSingleton<IOrdersDetailRepository>(
-  'OrdersRepository',
+  'OrdersDetailRepository',
   OrdersDetailRepository
 );
 

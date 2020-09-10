@@ -18,6 +18,15 @@ export default class CreateOrders1597895212861 implements MigrationInterface {
             type: 'varchar'
           },
           {
+            name: 'delivery_mobile',
+            type: 'varchar'
+          },
+          {
+            name: 'is_order_delivering',
+            type: 'smallint',
+            default: 0
+          },
+          {
             name: 'delivery_address1',
             type: 'varchar',
             isNullable: true
@@ -52,7 +61,7 @@ export default class CreateOrders1597895212861 implements MigrationInterface {
           },
           {
             name: 'order_total',
-            type: 'int'
+            type: 'money'
           },
           {
             name: 'is_delivered',

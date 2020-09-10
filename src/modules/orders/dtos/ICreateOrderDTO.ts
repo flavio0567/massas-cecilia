@@ -1,11 +1,13 @@
 export default interface ICreateOrderDTO {
-  user_id: string;
   delivery_name: string;
-  delivery_address1: string;
-  delivery_address2: string;
-  delivery_city: string;
-  delivery_state: string;
-  delivery_zip_code: string;
+  delivery_mobile: string;
+  is_order_delivering: number;
+  delivery_address1: string | null;
+  delivery_address2: string | null;
+  delivery_city: string | null;
+  delivery_state: string | null;
+  delivery_zip_code: string | null;
   delivery_date: Date;
   delivery_time: string;
+  order_total: number;
 }

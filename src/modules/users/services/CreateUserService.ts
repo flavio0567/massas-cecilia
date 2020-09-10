@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
@@ -38,10 +37,16 @@ class CreateUserService {
     const checkUserExists = await this.usersRepository.findByMobile(mobile);
 
     if (checkUserExists) {
-      throw new AppError('Mobile already used.', 401);
+      return checkUserExists;
     }
 
-    const hashedPassword = await this.hashProvider.generateHash(password);
+    let hashedPassword;
+
+    if (password) {
+      hashedPassword = await this.hashProvider.generateHash(password);
+    } else {
+      hashedPassword = '';
+    }
 
     const user = await this.usersRepository.create({
       avatar,

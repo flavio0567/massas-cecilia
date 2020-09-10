@@ -28,8 +28,8 @@ export default class CreateOrdersDetail1597895221852
             type: 'varchar'
           },
           {
-            name: ' sales_price',
-            type: 'int'
+            name: 'sales_price',
+            type: 'money'
           },
           {
             name: 'unit',

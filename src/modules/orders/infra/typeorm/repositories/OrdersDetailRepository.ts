@@ -26,18 +26,15 @@ class OrdersDetailRepository implements IOrdersDetailRepository {
     amount,
     quantity
   }: ICreateOrderDetailDTO): Promise<Orderdetail> {
-    const orderdetail = this.ormRepository.create({
-      order_id,
-      product_id,
-      sales_price,
-      unit,
-      amount,
-      quantity
-    });
+    const orderdetail = new Orderdetail();
+    orderdetail.order_id = order_id;
+    orderdetail.product_id = product_id;
+    orderdetail.sales_price = sales_price;
+    orderdetail.unit = unit;
+    orderdetail.amount = amount;
+    orderdetail.quantity = quantity;
 
-    await this.ormRepository.save(orderdetail);
-
-    return orderdetail;
+    return this.ormRepository.save(orderdetail);
   }
 
   public async save(orderdetail: Orderdetail): Promise<Orderdetail> {

@@ -38,7 +38,7 @@ usersRouter.post(
     [Segments.BODY]: {
       avatar: Joi.string(),
       name: Joi.string().required(),
-      mobile: Joi.string(),
+      mobile: Joi.string().required(),
       email: Joi.string()
         .email()
         .allow(''),
