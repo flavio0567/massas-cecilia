@@ -8,8 +8,6 @@ import CreateUserService from '@modules/users/services/CreateUserService';
 
 export default class OrdersController {
   public async create(req: Request, res: Response): Promise<Response> {
-    console.log(req.body);
-
     const { name, mobile, deliveryLocalization } = req.body;
 
     const {
