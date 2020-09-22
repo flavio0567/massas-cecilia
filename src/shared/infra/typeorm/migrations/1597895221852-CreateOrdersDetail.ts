@@ -41,7 +41,7 @@ export default class CreateOrdersDetail1597895221852
           },
           {
             name: 'quantity',
-            type: 'int'
+            type: 'decimal'
           },
           {
             name: 'created_at',
