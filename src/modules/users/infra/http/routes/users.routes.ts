@@ -32,6 +32,20 @@ usersRouter.get(
   }
 );
 
+usersRouter.get(
+  '/mobile/:mobile',
+  // ensureAuthenticated,
+  celebrate({ [Segments.PARAMS]: { mobile: Joi.string().required() } }),
+  async (req, res) => {
+    const { mobile } = req.params;
+
+    const usersRepository = new UsersRepository();
+    const user = await usersRepository.findByMobile(mobile);
+
+    return res.json({ user: classToClass(user) });
+  }
+);
+
 usersRouter.post(
   '/',
   celebrate({
@@ -47,6 +61,22 @@ usersRouter.post(
     }
   }),
   usersController.create
+);
+
+usersRouter.put(
+  '/',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      mobile: Joi.string().required(),
+      email: Joi.string()
+        .email()
+        .allow(''),
+      password: Joi.string(),
+      password_confirmation: Joi.string().valid(Joi.ref('password'))
+    }
+  }),
+  usersController.update
 );
 
 export default usersRouter;
