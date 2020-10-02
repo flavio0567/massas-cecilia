@@ -7,21 +7,12 @@ import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersR
 // import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
 
 import OrdersController from '../controllers/OrdersController';
-// import UsersController from '@modules/users/infra/http/controllers/UsersController';
 
 const ordersRouter = Router();
 
 const ordersController = new OrdersController();
 
-// const userController = new UsersController();
-
-ordersRouter.get('/', async (req, res) => {
-  const ordersRepository = new OrdersRepository();
-
-  const product = await ordersRepository.findOrders();
-
-  return res.json({ product: classToClass(product) });
-});
+ordersRouter.get('/', ordersController.findOrders);
 
 ordersRouter.get(
   '/:id',

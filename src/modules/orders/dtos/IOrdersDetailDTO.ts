@@ -1,4 +1,4 @@
-export default interface ICreateOrderDTO {
+export default interface IOrdersDetailDTO {
   delivery_name: string;
   delivery_mobile: string;
   is_order_delivering: number;
@@ -10,4 +10,14 @@ export default interface ICreateOrderDTO {
   delivery_date: Date;
   delivery_time: string;
   order_total: number;
+  order_details: [
+    {
+      order_id: string;
+      product_id: string;
+      sales_price: number;
+      unit: string;
+      amount: number;
+      quantity: number;
+    }
+  ];
 }

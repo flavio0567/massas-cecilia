@@ -1,3 +1,4 @@
+import { DecimalDataType } from 'sequelize/types';
 import {
   Entity,
   Column,

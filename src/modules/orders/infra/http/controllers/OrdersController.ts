@@ -2,11 +2,25 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
+import CreateUserService from '@modules/users/services/CreateUserService';
+import CreateOrderService from '@modules/orders/services/CreateOrderService';
+
 import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
 import OrdersDetailRepository from '@modules/orders/infra/typeorm/repositories/OrdersDetailRepository';
-import CreateUserService from '@modules/users/services/CreateUserService';
 
 export default class OrdersController {
+  public async findOrders(req: Request, res: Response): Promise<Response> {
+    const ordersRepository = new OrdersRepository();
+
+    const orders = await ordersRepository.findOrdersDetail();
+
+    if (!orders) {
+      return res.json('');
+    }
+
+    return res.json(orders);
+  }
+
   public async create(req: Request, res: Response): Promise<Response> {
     const { name, mobile, deliveryLocalization } = req.body;
 
@@ -48,9 +62,9 @@ export default class OrdersController {
 
     const { deliveryDate, deliveryTime } = deliveryDateTime;
 
-    const orderRepository = new OrdersRepository();
+    const createOrder = container.resolve(CreateOrderService);
 
-    const createOrder = await orderRepository.create({
+    const newOrder = await createOrder.execute({
       delivery_name: name,
       delivery_mobile: mobile,
       is_order_delivering: isOrderDelivering,
@@ -80,7 +94,7 @@ export default class OrdersController {
           quantity: number;
         }) => {
           ordersDetailRepository.create({
-            order_id: createOrder.id,
+            order_id: newOrder.id,
             product_id: element.id,
             sales_price: Number(element.sales_price),
             unit: element.unit,
@@ -93,6 +107,6 @@ export default class OrdersController {
       throw new AppError('Error creating order details.', err);
     }
 
-    return res.json(createOrder);
+    return res.json(newOrder);
   }
 }

@@ -16,7 +16,7 @@ class Notification {
   content: string;
 
   @Column('uuid')
-  recipient_id: string;
+  order_id: string;
 
   @Column({ default: 'false' })
   read: boolean;

@@ -69,7 +69,7 @@ productsRouter.get(
     const productsRepository = new ProductsRepository();
     const product = await productsRepository.findById(id);
 
-    return res.json({ product: classToClass(product) });
+    return res.json(product);
   }
 );
 
