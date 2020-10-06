@@ -34,9 +34,9 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   public async create({
-    is_order_delivering,
     delivery_name,
     delivery_mobile,
+    is_order_delivering,
     delivery_address1,
     delivery_address2,
     delivery_city,
@@ -47,9 +47,9 @@ class OrdersRepository implements IOrdersRepository {
     order_total
   }: ICreateOrderDTO): Promise<Order> {
     const order = new Order();
-    order.is_order_delivering = is_order_delivering;
     order.delivery_name = delivery_name;
     order.delivery_mobile = delivery_mobile;
+    order.is_order_delivering = is_order_delivering;
     order.delivery_address1 = delivery_address1!;
     order.delivery_address2 = delivery_address2!;
     order.delivery_city = delivery_city!;
@@ -60,6 +60,12 @@ class OrdersRepository implements IOrdersRepository {
     order.order_total = order_total;
 
     return this.ormRepository.save(order);
+  }
+
+  public async update(order: ICreateOrderDTO): Promise<void> {
+    await this.ormRepository.save(order);
+
+    return;
   }
 
   public async save(order: Order): Promise<Order> {

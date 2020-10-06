@@ -29,4 +29,6 @@ ordersRouter.get(
 
 ordersRouter.post('/create', ordersController.create);
 
+ordersRouter.put('/update', ordersController.update);
+
 export default ordersRouter;
