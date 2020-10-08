@@ -3,9 +3,12 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  OneToMany
 } from 'typeorm';
 import uploadConfig from '../../../../../config/upload';
+
+import Orderdetail from '../../../../orders/infra/typeorm/entities/Orderdetail';
 
 import { Expose } from 'class-transformer';
 
@@ -65,6 +68,12 @@ class Product {
         return null;
     }
   }
+
+  @OneToMany(
+    () => Orderdetail,
+    ordersdetail => ordersdetail.product
+  )
+  ordersdetail: Orderdetail[];
 
   @CreateDateColumn()
   created_at: Date;
