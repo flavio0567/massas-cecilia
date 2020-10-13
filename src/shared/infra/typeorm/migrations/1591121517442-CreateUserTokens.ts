@@ -21,7 +21,8 @@ export default class CreateUserTokens1591121517442
           {
             name: 'token',
             type: 'varchar',
-            generationStrategy: 'uuid'
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
             name: 'created_at',

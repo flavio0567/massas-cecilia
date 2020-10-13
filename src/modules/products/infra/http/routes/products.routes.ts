@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
-import uploadConfig from '../../../../../config/upload';
+import uploadConfig from '@config/upload';
 
 import AppError from '@shared/errors/AppError';
 import { celebrate, Joi, Segments } from 'celebrate';
@@ -10,15 +10,16 @@ import ProductsRepository from '@modules/products/infra/typeorm/repositories/Pro
 import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
 
 import ProductsController from '../controllers/ProductsController';
-import UpdateProductAvatarService from '@modules/products/services/UpdateProductAvatarService';
+import ProductActivateController from '../controllers/ProductActivateController';
+import ProductAvatarController from '../controllers/ProductAvatarController';
 
-import ActivateProductController from '../controllers/ActivateProductController';
 
 const productsRouter = Router();
 const upload = multer(uploadConfig.multer);
 
 const productsController = new ProductsController();
-const activateProductController = new ActivateProductController();
+const productActivateController = new ProductActivateController();
+const productAvatarController = new ProductAvatarController();
 
 productsRouter.get('/', async (req, res) => {
   const productsRepository = new ProductsRepository();
@@ -127,28 +128,14 @@ productsRouter.put(
 productsRouter.patch(
   '/activate/:product_id',
   ensureAuthenticated,
-  activateProductController.update
+  productActivateController.update
 );
 
 productsRouter.patch(
   '/avatar/:product_id',
   ensureAuthenticated,
   upload.single('avatar'),
-  async (req, res) => {
-    const { product_id } = req.params;
-    try {
-      const updateProductAvatar = new UpdateProductAvatarService();
-
-      const product = await updateProductAvatar.execute({
-        product_id,
-        avatarFilename: req.file.filename
-      });
-
-      return res.json({ product: classToClass(product) });
-    } catch (err) {
-      throw new AppError('Error uploading product avatar.', err);
-    }
-  }
+  productAvatarController.update,
 );
 
 export default productsRouter;

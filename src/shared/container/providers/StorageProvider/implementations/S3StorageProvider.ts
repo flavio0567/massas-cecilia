@@ -6,18 +6,19 @@ import aws, { S3 } from 'aws-sdk';
 
 import IStorageProvider from '../models/IStorageProvider';
 
-class DiskStorageProvider implements IStorageProvider {
+class S3StorageProvider implements IStorageProvider {
   private client: S3;
 
   constructor() {
     this.client = new aws.S3({
-      // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      region: 'us-west-1'
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: 'us-east-1'
     });
   }
 
   public async saveFile(file: string): Promise<string> {
+    console.log('Inside of S3Storage');
     const originalPath = path.resolve(uploadConfig.tmpFolder, file);
 
     const ContentType = mime.getType(originalPath);
@@ -26,22 +27,24 @@ class DiskStorageProvider implements IStorageProvider {
       throw new Error('File not found.');
     }
 
-    const fileContent = await fs.promises.readFile(originalPath, {
-      encoding: 'utf-8'
-    });
+    const fileContent = await fs.promises.readFile(originalPath);
 
+    console.log('bucket criado :', uploadConfig.config.aws.bucket);
     await this.client
       .putObject(
         {
+          Body: fileContent,
           Bucket: uploadConfig.config.aws.bucket as string,
           Key: file,
           ACL: 'public-read',
-          Body: fileContent,
           ContentType
         },
-        function(err) {
+        function(err, data) {
           if (err) {
-            throw err;
+            console.log('PutObject return:', err, err.stack);
+          } else {
+            console.log('Success', data);
+            // throw err;
           }
         }
       )
@@ -62,4 +65,4 @@ class DiskStorageProvider implements IStorageProvider {
   }
 }
 
-export default DiskStorageProvider;
+export default S3StorageProvider;

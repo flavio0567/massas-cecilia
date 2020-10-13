@@ -1,9 +1,10 @@
 import path from 'path';
 import fs, { promises } from 'fs';
-
-import { getRepository } from 'typeorm';
-
 import uploadConfig from '../../../config/upload';
+import { injectable, inject } from 'tsyringe';
+
+import IProductsRepository from '../repositories/IProductsRepository';
+
 import Product from '../infra/typeorm/entities/Product';
 
 interface Request {
@@ -11,14 +12,18 @@ interface Request {
   avatarFilename: string;
 }
 
+@injectable()
 class UpdateProductAvatarService {
+  constructor(
+    @inject('ProductsRepository')
+    private productsRepository: IProductsRepository,
+  ) {}
+
   public async execute({
     product_id,
     avatarFilename
   }: Request): Promise<Product | undefined> {
-    const productsRepository = getRepository(Product);
-
-    const product = await productsRepository.findOne(product_id);
+    const product = await this.productsRepository.findById(product_id);
 
     if (!product) {
       throw new Error('Only authenticated user can update a product avatar.');
@@ -30,7 +35,7 @@ class UpdateProductAvatarService {
         product.avatar
       );
 
-      const productAvatarFileExists = await promises.stat(
+      const productAvatarFileExists = await fs.promises.stat(
         productAvatarFilePath
       );
 
@@ -41,7 +46,7 @@ class UpdateProductAvatarService {
 
     product.avatar = avatarFilename;
 
-    await productsRepository.save(product);
+    await this.productsRepository.save(product);
 
     return product;
   }

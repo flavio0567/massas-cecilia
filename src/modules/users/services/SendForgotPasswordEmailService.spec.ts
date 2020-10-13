@@ -2,7 +2,7 @@
 import AppError from '@shared/errors/AppError';
 
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
+import FakeUsersRepository from '../repositories/fakes/FakeUserRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 
@@ -28,17 +28,17 @@ describe('SendForgotPasswordEmailService', () => {
     const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
 
     await fakeUsersRepository.create({
-      avatar: "123",
-      name: "Flavio Rocha",
-      email: "fmrocha@gmail.com",
-      mobile: "9254759191",
-      password_hash: "123456",
+      avatar: '123',
+      name: 'Flavio Rocha',
+      email: 'fmrocha@gmail.com',
+      mobile: '9254759191',
+      password_hash: '123456',
       is_admin: 1,
-      is_active: 0,
+      is_active: 0
     });
 
     await sendForgotPasswordEmail.execute({
-      email: 'fmrocha@gmail.com',
+      email: 'fmrocha@gmail.com'
     });
 
     expect(sendMail).toHaveBeenCalled();
@@ -47,26 +47,26 @@ describe('SendForgotPasswordEmailService', () => {
   it('should not be able to recover a non-existing email', async () => {
     await expect(
       sendForgotPasswordEmail.execute({
-        email: 'fmrocha@gmail.com',
+        email: 'fmrocha@gmail.com'
       })
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should generate forgotten password', async () => {
+  it('should generate forgotten password token', async () => {
     const sendGenerateToken = jest.spyOn(fakeUserTokensRepository, 'generate');
 
     const user = await fakeUsersRepository.create({
-      avatar: "123",
-      name: "Flavio Rocha",
-      email: "fmrocha@gmail.com",
-      mobile: "9254759191",
-      password_hash: "123456",
+      avatar: '123',
+      name: 'Flavio Rocha',
+      email: 'fmrocha@gmail.com',
+      mobile: '9254759191',
+      password_hash: '123456',
       is_admin: 1,
-      is_active: 0,
+      is_active: 0
     });
 
     await sendForgotPasswordEmail.execute({
-      email: 'fmrocha@gmail.com',
+      email: 'fmrocha@gmail.com'
     });
 
     expect(sendGenerateToken).toHaveBeenCalledWith(user.id);

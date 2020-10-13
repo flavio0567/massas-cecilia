@@ -75,11 +75,6 @@ export default class CreateProducts1591656281826 implements MigrationInterface {
             isNullable: true
           },
           {
-            name: 'avatar_url',
-            type: 'varchar',
-            isNullable: true
-          },
-          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()'
