@@ -52,7 +52,7 @@ usersRouter.post(
     [Segments.BODY]: {
       avatar: Joi.string(),
       name: Joi.string().required(),
-      mobile: Joi.string().required(),
+      mobile: Joi.number().required(),
       email: Joi.string()
         .email()
         .allow(''),
@@ -68,7 +68,7 @@ usersRouter.put(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      mobile: Joi.string().required(),
+      mobile: Joi.number().required(),
       email: Joi.string()
         .email()
         .allow(''),

@@ -8,15 +8,58 @@ import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
 import OrdersDetailRepository from '@modules/orders/infra/typeorm/repositories/OrdersDetailRepository';
 
+interface OrderDetailProps {
+  id: string;
+  order_id: string;
+  product_id: string;
+  sales_price: string;
+  unit: string;
+  amount: number;
+  quantity: number;
+}
+
+interface OrderProps {
+  id: string;
+  delivery_name: string;
+  delivery_mobile: string;
+  is_order_delivering: number;
+  delivery_address1: string;
+  delivery_address2: string;
+  delivery_city: string;
+  delivery_state: string;
+  delivery_zip_code: string;
+  delivery_date: Date;
+  delivery_time: string;
+  order_total: number;
+  is_delivered: number;
+  ordersdetail: OrderDetailProps;
+}
+
 export default class OrdersController {
   public async findOrders(req: Request, res: Response): Promise<Response> {
     const ordersRepository = new OrdersRepository();
 
-    const orders = await ordersRepository.findOrdersDetail();
+    const orders = await ordersRepository.findOrdersDetail()
 
-    if (!orders) {
-      return res.json('');
-    }
+    let orderResponse = await orders;
+
+    // let orderDetailsResponse = await orderResponse?.map(orderResponse => {
+    //   return orderResponse.ordersdetail;
+    // });
+
+    // console.log(orderDetailsResponse)
+
+    // let result = await
+    //   orderResponse?.map(async (order) => {
+    //     return await Promise.all(
+    //       order.ordersdetail.map(async (detail: any, index: number) => {
+    //         console.log('detail', detail?.product_id)
+    //         let detailsResponse = await productsRepository.findById(detail?.product_id);
+    //         console.log('detail', detailsResponse)
+    //         return detailsResponse;
+    //       })
+    //     )
+    // });
 
     return res.json(orders);
   }
