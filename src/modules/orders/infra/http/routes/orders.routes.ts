@@ -4,13 +4,15 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { classToClass } from 'class-transformer';
 
 import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
-// import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
+import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
 
 import OrdersController from '../controllers/OrdersController';
 
 const ordersRouter = Router();
 
 const ordersController = new OrdersController();
+
+// ordersRouter.use(ensureAuthenticated);
 
 ordersRouter.get('/', ordersController.findOrders);
 
@@ -29,6 +31,6 @@ ordersRouter.get(
 
 ordersRouter.post('/create', ordersController.create);
 
-ordersRouter.put('/update', ordersController.update);
+ordersRouter.put('/', ordersController.update);
 
 export default ordersRouter;

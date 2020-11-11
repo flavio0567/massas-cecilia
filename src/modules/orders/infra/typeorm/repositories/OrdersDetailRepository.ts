@@ -2,10 +2,14 @@ import { getRepository, Repository } from 'typeorm';
 
 import IOrdersDetailRepository from '@modules/orders/repositories/IOrdersDetailRepository';
 import ICreateOrderDetailDTO from '@modules/orders/dtos/ICreateOrderDetailDTO';
+import IUpdateOrderDetailDTO from '@modules/orders/dtos/IUpdateOrderDetailDTO';
 
 import Orderdetail from '../entities/Orderdetail';
 
 class OrdersDetailRepository implements IOrdersDetailRepository {
+  execute(arg0: { id: string; order_id: string; product_id: string; sales_price: number; unit: string; amount: number; quantity: number; product_name: string; }) {
+    throw new Error('Method not implemented.');
+  }
   private ormRepository: Repository<Orderdetail>;
 
   constructor() {
@@ -30,7 +34,8 @@ class OrdersDetailRepository implements IOrdersDetailRepository {
     sales_price,
     unit,
     amount,
-    quantity
+    quantity,
+    product_name
   }: ICreateOrderDetailDTO): Promise<Orderdetail> {
     const orderdetail = new Orderdetail();
     orderdetail.order_id = order_id;
@@ -39,8 +44,15 @@ class OrdersDetailRepository implements IOrdersDetailRepository {
     orderdetail.unit = unit;
     orderdetail.amount = amount;
     orderdetail.quantity = quantity;
+    orderdetail.product_name = product_name;
 
     return this.ormRepository.save(orderdetail);
+  }
+
+  public async update(orderdetail: IUpdateOrderDetailDTO): Promise<void> {
+    await this.ormRepository.save(orderdetail);
+
+    return;
   }
 
   public async save(orderdetail: Orderdetail): Promise<Orderdetail> {

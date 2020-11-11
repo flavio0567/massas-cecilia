@@ -1,4 +1,4 @@
-export default interface ICreateOrderDetailDTO {
+export default interface IUpdateOrderDetailDTO {
   order_id: string;
   product_id: string;
   sales_price: number;

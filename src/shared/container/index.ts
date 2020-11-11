@@ -21,6 +21,9 @@ import OrdersRepository from '@modules/orders/infra/typeorm/repositories/OrdersR
 import IOrdersDetailRepository from '@modules/orders/repositories/IOrdersDetailRepository';
 import OrdersDetailRepository from '@modules/orders/infra/typeorm/repositories/OrdersDetailRepository';
 
+import IOrdersClosedRepository from '@modules/orders/repositories/IOrdersClosedRepository';
+import OrdersClosedRepository from '@modules/orders/infra/typeorm/repositories/OrdersClosedRepository';
+
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
 
@@ -53,6 +56,12 @@ container.registerSingleton<IOrdersDetailRepository>(
   'OrdersDetailRepository',
   OrdersDetailRepository
 );
+
+container.registerSingleton<IOrdersClosedRepository>(
+  'OrdersClosedRepository',
+  OrdersClosedRepository
+);
+
 
 container.registerSingleton<INotificationsRepository>(
   'NotificationsRepository',

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
-// import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
+import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
 
 import UsersController from '../controllers/UsersController';
 
@@ -34,7 +34,7 @@ usersRouter.get(
 
 usersRouter.get(
   '/mobile/:mobile',
-  // ensureAuthenticated,
+  ensureAuthenticated,
   celebrate({ [Segments.PARAMS]: { mobile: Joi.string().required() } }),
   async (req, res) => {
     const { mobile } = req.params;

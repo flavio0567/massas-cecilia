@@ -5,7 +5,7 @@ import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificat
 import IUpdateNotificationDTO from '@modules/notifications/dtos/IUpdateNotificationDTO';
 
 import Notification from '../schemas/Notification';
-import Orderdetail from '@modules/orders/infra/typeorm/entities/Orderdetail';
+// import Orderdetail from '@modules/orders/infra/typeorm/entities/Orderdetail';
 
 class NotificationsRepository implements INotificationsRepository {
   private ormRepository: MongoRepository<Notification>;

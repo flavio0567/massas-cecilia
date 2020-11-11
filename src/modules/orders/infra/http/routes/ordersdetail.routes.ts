@@ -15,7 +15,7 @@ ordersDetailRouter.get(
 
     const ordersDetailRepository = new OrdersDetailRepository();
     const ordersDetail = await ordersDetailRepository.findById(id);
-
+    console.log('name: ', ordersDetail)
     return res.json(ordersDetail);
   }
 );

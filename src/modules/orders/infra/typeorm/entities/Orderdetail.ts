@@ -35,6 +35,9 @@ class Orderdetail {
   @Column()
   quantity: number;
 
+  @Column()
+  product_name: string;
+
   @ManyToOne(
     () => Order,
     order => order.ordersdetail

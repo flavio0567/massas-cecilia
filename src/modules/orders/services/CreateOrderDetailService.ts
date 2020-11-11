@@ -11,6 +11,7 @@ interface IRequest {
   unit: string;
   amount: number;
   quantity: number;
+  product_name: string;
 }
 
 @injectable()
@@ -26,7 +27,8 @@ class CreateOrderDetailService {
     sales_price,
     unit,
     amount,
-    quantity
+    quantity,
+    product_name
   }: IRequest): Promise<Orderdetail> {
     const orderdetail = await this.ordersDetailRepository.create({
       order_id,
@@ -34,7 +36,8 @@ class CreateOrderDetailService {
       sales_price,
       unit,
       amount,
-      quantity
+      quantity,
+      product_name
     });
 
     return orderdetail;

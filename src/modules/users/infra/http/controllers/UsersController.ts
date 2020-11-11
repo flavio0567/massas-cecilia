@@ -17,7 +17,6 @@ export default class UsersController {
       is_admin,
       is_active
     } = req.body;
-    console.log('de dentro do create user:', req.body)
     const createUser = container.resolve(CreateUserService);
 
     const user = await createUser.execute({

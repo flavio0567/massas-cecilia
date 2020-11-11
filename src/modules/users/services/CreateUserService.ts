@@ -48,9 +48,9 @@ class CreateUserService {
         is_admin,
         is_active
       });
-
       return userUpdated;
     }
+
 
     let hashedPassword;
 
