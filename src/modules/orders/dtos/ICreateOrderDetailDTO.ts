@@ -6,4 +6,5 @@ export default interface ICreateOrderDetailDTO {
   amount: number;
   quantity: number;
   product_name: string;
+  packing: string;
 }

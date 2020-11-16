@@ -18,7 +18,6 @@ class S3StorageProvider implements IStorageProvider {
   }
 
   public async saveFile(file: string): Promise<string> {
-    console.log('Inside of S3Storage');
     const originalPath = path.resolve(uploadConfig.tmpFolder, file);
 
     const ContentType = mime.getType(originalPath);
@@ -29,7 +28,6 @@ class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await fs.promises.readFile(originalPath);
 
-    console.log('bucket criado :', uploadConfig.config.aws.bucket);
     await this.client
       .putObject(
         {
@@ -44,7 +42,6 @@ class S3StorageProvider implements IStorageProvider {
             console.log('PutObject return:', err, err.stack);
           } else {
             console.log('Success', data);
-            // throw err;
           }
         }
       )

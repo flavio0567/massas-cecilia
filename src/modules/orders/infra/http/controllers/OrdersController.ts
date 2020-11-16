@@ -91,6 +91,7 @@ export default class OrdersController {
           amount: number;
           quantity: number;
           product_name: string;
+          packing: string;
         }) => {
           ordersDetailRepository.create({
             order_id: newOrder.id,
@@ -99,7 +100,8 @@ export default class OrdersController {
             unit: element.unit,
             amount: element.amount,
             quantity: element.quantity,
-            product_name: element.product_name
+            product_name: element.product_name,
+            packing: element.packing
           });
         }
       );

@@ -38,6 +38,9 @@ class Orderdetail {
   @Column()
   product_name: string;
 
+  @Column()
+  packing: string;
+
   @ManyToOne(
     () => Order,
     order => order.ordersdetail
