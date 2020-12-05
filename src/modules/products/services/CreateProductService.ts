@@ -14,6 +14,7 @@ interface IRequest {
   ncm: number;
   amount: number;
   is_inactive: number;
+  exception: number;
   product_family: number;
   category: number;
   sub_category: number;
@@ -35,6 +36,7 @@ class CreateProductService {
     ncm,
     amount,
     is_inactive,
+    exception,
     product_family,
     category,
     sub_category
@@ -54,6 +56,7 @@ class CreateProductService {
       ncm,
       amount,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category

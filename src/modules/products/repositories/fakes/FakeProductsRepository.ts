@@ -1,9 +1,9 @@
 import { uuid } from 'uuidv4';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
-import ICreateProductDTO from '@modules/products/dtos/ICreateProductDTO';
 
 import Product from '@modules/products/infra/typeorm/entities/Product';
+import ICreateProductDTO from '@modules/products/dtos/ICreateProductDTO';
 
 class FakeProductsRepository implements IProductsRepository {
   private products: Product[] = [];
@@ -25,6 +25,48 @@ class FakeProductsRepository implements IProductsRepository {
 
     return findProduct;
   }
+
+  public async findFamilyProducts(): Promise<Product[] | undefined> {
+    const findProduct = this.products.find(
+      product =>
+        product.product_family > 0 &&
+        product.category === 0 &&
+        product.sub_category === 0 &&
+        product.is_inactive === 0
+    );
+
+    return findProduct;
+  }
+
+public async findProductsCategory(
+    product_family: number
+  ): Promise<Product[] | undefined> {
+    const findProduct = this.products.find(
+      product =>
+        product.product_family &&
+        product.category > 0 &&
+        product.sub_category === 0 &&
+        product.is_inactive === 0
+    );
+
+    return findProduct;
+  }
+
+  public async findProductsSubCategory(
+    product_family: number,
+    category: number
+  ): Promise<Product[] | undefined> {
+    const findProduct = this.products.find(
+      product =>
+        product.product_family &&
+        product.category &&
+        product.sub_category > 0 &&
+        product.is_inactive === 0
+    );
+
+    return findProduct;
+  }
+
 
   public async create(productData: ICreateProductDTO): Promise<Product> {
     const product = new Product();

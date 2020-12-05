@@ -7,6 +7,7 @@ export default interface ICreateProductDTO {
   sales_price: number;
   ncm: number;
   is_inactive: number;
+  exception: number;
   product_family: number;
   category: number;
   sub_category: number;

@@ -15,6 +15,7 @@ export default class ProductsController {
       ncm,
       amount,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category
@@ -31,6 +32,7 @@ export default class ProductsController {
       ncm,
       amount,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category
@@ -46,6 +48,7 @@ export default class ProductsController {
       sales_price,
       amount,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category
@@ -64,6 +67,7 @@ export default class ProductsController {
       sales_price,
       amount,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category

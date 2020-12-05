@@ -24,6 +24,7 @@ describe('CreateProduct', () => {
       barcode: 1,
       ncm: 19022000,
       is_inactive: 0,
+      exception: 0,
       product_family: 1,
       category: 1,
       sub_category: 1
@@ -42,6 +43,7 @@ describe('CreateProduct', () => {
       barcode: 1,
       ncm: 19022000,
       is_inactive: 0,
+      exception: 0,
       product_family: 1,
       category: 1,
       sub_category: 1
@@ -57,6 +59,7 @@ describe('CreateProduct', () => {
         barcode: 1,
         ncm: 19022000,
         is_inactive: 0,
+        exception: 0,
         product_family: 1,
         category: 1,
         sub_category: 1

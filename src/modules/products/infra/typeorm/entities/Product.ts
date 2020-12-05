@@ -51,6 +51,9 @@ class Product {
   is_inactive: number;
 
   @Column()
+  exception: number;
+
+  @Column()
   avatar: string;
 
   @Expose({ name: 'avatar_url' })

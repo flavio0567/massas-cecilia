@@ -12,6 +12,7 @@ interface IRequest {
   sales_price: number;
   amount: number;
   is_inactive: number;
+  exception: number;
   product_family: number;
   category: number;
   sub_category: number;
@@ -31,6 +32,7 @@ class UpdateProductService {
     unit,
     amount,
     is_inactive,
+    exception,
     product_family,
     category,
     sub_category
@@ -46,6 +48,7 @@ class UpdateProductService {
     product.sales_price = sales_price;
     product.amount = amount;
     product.is_inactive = is_inactive;
+    product.exception = exception;
     product.product_family = product_family;
     product.category = category;
     product.sub_category = sub_category;

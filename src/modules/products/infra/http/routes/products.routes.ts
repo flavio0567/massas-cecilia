@@ -117,6 +117,7 @@ productsRouter.put(
       sales_price: Joi.number().required(),
       amount: Joi.number(),
       is_inactive: Joi.number(),
+      exception: Joi.number(),
       product_family: Joi.number(),
       category: Joi.number(),
       sub_category: Joi.number()

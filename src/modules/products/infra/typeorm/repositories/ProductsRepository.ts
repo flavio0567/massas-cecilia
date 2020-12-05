@@ -94,6 +94,7 @@ class ProductsRepository implements IProductsRepository {
     barcode,
     ncm,
     is_inactive,
+    exception,
     product_family,
     category,
     sub_category
@@ -107,6 +108,7 @@ class ProductsRepository implements IProductsRepository {
       barcode,
       ncm,
       is_inactive,
+      exception,
       product_family,
       category,
       sub_category
