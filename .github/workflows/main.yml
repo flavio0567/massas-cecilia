@@ -27,6 +27,8 @@ jobs:
         uses: actions/setup-node@v2.1.0
         with:
           node-version: 12.x
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       # Cache directory dependencies
       - name: Get yarn cache directory path
