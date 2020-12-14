@@ -12,6 +12,9 @@ The app has a backend (massas-cecilia) built in Nodejs with Express using Postgr
 ## Layout web
 ![Layout web 1](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic1.png) ![Layout web 2](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic2.png) ![Layout web 3](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic3.png)
 
+## Layout mobile
+![Layout mobile](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/iPhone%205%201.jpg)
+
 # Technologies applied
 
 ## Backend
