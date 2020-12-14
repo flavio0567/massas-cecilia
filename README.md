@@ -20,7 +20,7 @@ The app has a backend (massas-cecilia) built in Nodejs with Express using Postgr
 - Typescript
 - Typeorm
 - JWT
-- AWS-SDK
+- AWS-S3
 - Multer
 - Nodemailer
 - Redis
