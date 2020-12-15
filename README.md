@@ -13,7 +13,7 @@ The app has a backend (massas-cecilia) built in Nodejs with Express using Postgr
 ![Layout web 1](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic1.png) ![Layout web 2](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic2.png) ![Layout web 3](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic3.png)
 
 ## Layout mobile
-![iPhone layout 1](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/iPhone_1.jpg) ![Android layout 2](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/Android_2.jpg) ![iPhone layout 3](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/iPhone_3.jpg) ![Android layout 4](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/Android_4.jpg) ![iPhone layout 5](https://github.com/flavio0567/massasapp/blob/master/src/modules/assets/iPhone_5.jpg)
+![iPhone layout 1](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/iPhone_1.jpg) ![Android layout 2](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/Android_2.png) ![iPhone layout 3](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/iPhone_3.png) ![Android layout 4](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/Android_4.jpg) ![iPhone layout 5](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/iPhone_5.jpg)
 
 # Technologies applied
 
