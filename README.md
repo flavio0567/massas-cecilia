@@ -5,9 +5,9 @@
 
 https://app.massasdacecilia.com.br/
 
-Massas da Cecilia is an e-commerce full stack web and mobile, built to receive orders of products sold in www.massasdacecilia.com.br.
+Massas da Cecilia is an e-commerce full stack web (https://github.com/flavio0567/massas-cecilia-web) and mobile (https://github.com/flavio0567/massasapp), built to receive orders of products sold by www.massasdacecilia.com.br.
 
-The app has a backend (massas-cecilia) built in Nodejs with Express using Postgres as a persistence database, MongoDb and Redis to handle notifications. The images are storaged on AWS S3 and the authentication is based on JWT token.
+The app has a backend (https://github.com/flavio0567/massas-cecilia) built in Nodejs with Express using Postgres as a persistence database, MongoDb and Redis to handle notifications. The images are stored in AWS S3, and the authentication is based on JWT token.
 
 ## Layout web
 ![Layout web 1](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic1.png) ![Layout web 2](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic2.png) ![Layout web 3](https://github.com/flavio0567/massas-cecilia-web/blob/master/src/assets/massas-web-pic3.png)
