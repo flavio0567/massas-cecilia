@@ -62,7 +62,8 @@ class OrdersRepository implements IOrdersRepository {
     delivery_zip_code,
     delivery_date,
     delivery_time,
-    order_total
+    order_total,
+    payment_method,
   }: ICreateOrderDTO): Promise<Order> {
     const order = new Order();
     order.delivery_name = delivery_name;
@@ -76,6 +77,7 @@ class OrdersRepository implements IOrdersRepository {
     order.delivery_date = delivery_date;
     order.delivery_time = delivery_time;
     order.order_total = order_total;
+    order.payment_method = payment_method;
 
     return this.ormRepository.save(order);
   }

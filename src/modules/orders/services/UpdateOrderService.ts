@@ -17,6 +17,7 @@ interface IRequest {
   delivery_date: Date;
   delivery_time: string;
   order_total: number;
+  payment_method: number;
 }
 
 @injectable()
@@ -38,6 +39,7 @@ class UpdateOrderService {
     delivery_date,
     delivery_time,
     order_total,
+    payment_method,
   }: IRequest): Promise<Order> {
     const order = await this.ordersRepository.findById(id);
 
@@ -55,6 +57,7 @@ class UpdateOrderService {
     order.delivery_date = delivery_date;
     order.delivery_time = delivery_time;
     order.order_total = order_total;
+    order.payment_method = payment_method;
 
     await this.ordersRepository.update(order);
 

@@ -7,6 +7,7 @@ import Order from '../infra/typeorm/entities/Order';
 
 interface IRequest {
   id: string;
+  payment_method: number;
 }
 
 @injectable()
@@ -18,6 +19,7 @@ class UpdateOrderClosedService {
 
   public async execute({
     id,
+    payment_method,
   }: IRequest): Promise<Order> {
     const order = await this.ordersClosedRepository.findById(id);
 
@@ -26,6 +28,7 @@ class UpdateOrderClosedService {
     }
 
     order.is_delivered = 1;
+    order.payment_method = payment_method;
 
     await this.ordersClosedRepository.update(order);
 

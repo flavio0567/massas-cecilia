@@ -23,10 +23,12 @@ export default class OrdersController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
+    const { paymentMethod } = req.body;
 
     const updateOrder = container.resolve(UpdateOrderClosedService);
 
-    const updateOrderClosed = await updateOrder.execute({ id });
+    const updateOrderClosed = await updateOrder
+      .execute({ id, payment_method: paymentMethod });
 
     return res.json(updateOrderClosed);
   }

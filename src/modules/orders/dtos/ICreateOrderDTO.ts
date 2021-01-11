@@ -11,4 +11,5 @@ export default interface ICreateOrderDTO {
   delivery_time: string;
   order_total: number;
   is_delivered: number;
+  payment_method: number;
 }

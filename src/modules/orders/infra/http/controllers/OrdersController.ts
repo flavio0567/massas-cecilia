@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
-import CreateUserService from '@modules/users/services/CreateUserService';
+// import CreateUserService from '@modules/users/services/CreateUserService';
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import UpdateOrderService from '@modules/orders/services/UpdateOrderService';
 import UpdatedOrderDetailService from '@modules/orders/services/UpdateOrderDetailService';
@@ -29,7 +29,7 @@ export default class OrdersController {
       neighborhood,
       street,
       numberAddress,
-      complementAddress
+      complementAddress,
     } = deliveryLocalization;
 
     // User
@@ -56,7 +56,7 @@ export default class OrdersController {
       address = null;
     }
 
-    const { order_total, isOrderDelivering, deliveryDateTime } = req.body;
+    const { order_total, isOrderDelivering, deliveryDateTime, payment_method, } = req.body;
 
     const { deliveryDate, deliveryTime } = deliveryDateTime;
 
@@ -73,7 +73,8 @@ export default class OrdersController {
       delivery_zip_code: cep,
       delivery_date: deliveryDate,
       delivery_time: deliveryTime,
-      order_total
+      order_total,
+      payment_method,
     });
 
     // Detail
@@ -124,7 +125,8 @@ export default class OrdersController {
       delivery_zip_code,
       delivery_date,
       delivery_time,
-      order_total } = req.body;
+      order_total,
+      payment_method} = req.body;
 
     const updateOrder = container.resolve(UpdateOrderService);
 
@@ -140,6 +142,7 @@ export default class OrdersController {
       delivery_date,
       delivery_time,
       order_total,
+      payment_method,
     });
 
     // Detail

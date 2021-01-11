@@ -16,7 +16,9 @@ ordersClosedRouter.get('/', ordersClosedController.findOrdersClosed);
 
 ordersClosedRouter.patch(
   '/:id',
-  celebrate({ [Segments.PARAMS]: { id: Joi.string().required() } }),
+  // celebrate({
+  //   [Segments.PARAMS]: { id: Joi.string().required() },
+  // }),
   ordersClosedController.update
 );
 

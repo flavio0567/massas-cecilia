@@ -50,6 +50,9 @@ class Order {
   @Column()
   is_delivered: number;
 
+  @Column()
+  payment_method: number;
+
   @OneToMany(
     () => Orderdetail,
     orderdetail => orderdetail.order
