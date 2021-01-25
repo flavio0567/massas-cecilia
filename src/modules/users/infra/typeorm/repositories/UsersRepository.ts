@@ -14,7 +14,13 @@ class UsersRepository implements IUsersRepository {
   }
 
   public async findUsers(): Promise<User[] | undefined> {
-    const findUsers = await this.ormRepository.find();
+    const findUsers = await this.ormRepository.find(
+      {
+      order: {
+        name: 'ASC'
+      }
+    }
+    );
 
     return findUsers;
   }

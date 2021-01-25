@@ -1,8 +1,14 @@
 import Product from '../infra/typeorm/entities/Product';
 import ICreateProductDTO from '../dtos/ICreateProductDTO';
 
+interface ProductLoaded {
+  products: Product[];
+  contentLength: number;
+}
+
 export default interface IProductsRepository {
-  findProducts(): Promise<Product[] | undefined>;
+  findProducts(limit: number, page: number): Promise<ProductLoaded | undefined>;
+  searchProducts(like: string): Promise<Product[] | undefined>;
   findFamilyProducts(): Promise<Product[] | undefined>;
   findProductsCategory(product_family: number): Promise<Product[] | undefined>;
   findProductsSubCategory(

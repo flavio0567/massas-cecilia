@@ -1,4 +1,5 @@
 import { getRepository, Repository, Raw } from 'typeorm';
+import { Like } from 'typeorm';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ICreateProductDTO from '@modules/products/dtos/ICreateProductDTO';
@@ -12,11 +13,22 @@ class ProductsRepository implements IProductsRepository {
     this.ormRepository = getRepository(Product);
   }
 
-  public async findProducts(): Promise<Product[] | undefined> {
-    const findProduct = await this.ormRepository.find({
+  public async findProducts(limit: number, page: number): Promise<any> {
+    const findProduct = await this.ormRepository.findAndCount({
+      take: limit,
+      skip: page,
+      cache: true,
       order: {
         name: 'ASC'
       }
+    });
+    return findProduct;
+  }
+
+  public async searchProducts(like: string): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      name: Like(`%${like}%`)
+
     });
     return findProduct;
   }

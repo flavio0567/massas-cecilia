@@ -2,17 +2,16 @@ import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 
-import AppError from '@shared/errors/AppError';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { classToClass } from 'class-transformer';
 
 import ProductsRepository from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import ensureAuthenticated from '@shared/infra/http/middleware/ensureAuthenticated';
+import paginatedResults from '@shared/infra/http/middleware/pagination';
 
 import ProductsController from '../controllers/ProductsController';
 import ProductActivateController from '../controllers/ProductActivateController';
 import ProductAvatarController from '../controllers/ProductAvatarController';
-
 
 const productsRouter = Router();
 const upload = multer(uploadConfig.multer);
@@ -21,13 +20,24 @@ const productsController = new ProductsController();
 const productActivateController = new ProductActivateController();
 const productAvatarController = new ProductAvatarController();
 
-productsRouter.get('/', async (req, res) => {
-  const productsRepository = new ProductsRepository();
 
-  const product = await productsRepository.findProducts();
-
-  return res.json({ product: classToClass(product) });
+productsRouter.get('/', paginatedResults,(req, res) => {
+  return res.json({ product: res.paginatedResults });
 });
+
+
+productsRouter.get(
+  '/search',
+  celebrate({ [Segments.QUERY]: { like: Joi.string().required() } }),
+  async (req, res) => {
+    const { like } = req.query;
+
+    const productsRepository = new ProductsRepository();
+    const product = await productsRepository.searchProducts(like);
+
+    return res.json(product);
+  }
+);
 
 productsRouter.get('/family', async (req, res) => {
   const productsRepository = new ProductsRepository();
@@ -90,7 +100,7 @@ productsRouter.get(
 productsRouter.post(
   '/',
   celebrate({
-    [Segments.BODY]: {
+    [Segments.BODY]: Joi.object().keys({
       code: Joi.string().required(),
       name: Joi.string().required(),
       sales_price: Joi.number().required(),
@@ -102,7 +112,7 @@ productsRouter.post(
       product_family: Joi.number().required(),
       category: Joi.number().default(0),
       sub_category: Joi.number().default(0)
-    }
+    }),
   }),
   productsController.create
 );
