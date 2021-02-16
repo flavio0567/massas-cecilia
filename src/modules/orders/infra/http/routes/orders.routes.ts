@@ -12,7 +12,7 @@ const ordersRouter = Router();
 
 const ordersController = new OrdersController();
 
-// ordersRouter.use(ensureAuthenticated);
+ordersRouter.use(ensureAuthenticated);
 
 ordersRouter.get('/', ordersController.findOrders);
 
@@ -24,6 +24,19 @@ ordersRouter.get(
 
     const ordersRepository = new OrdersRepository();
     const order = await ordersRepository.findById(id);
+
+    return res.json({ order: classToClass(order) });
+  }
+);
+
+ordersRouter.get(
+  '/mobile/:delivery_mobile',
+  celebrate({ [Segments.PARAMS]: { delivery_mobile: Joi.number().required() } }),
+  async (req, res) => {
+    const { delivery_mobile } = req.params;
+
+    const ordersRepository = new OrdersRepository();
+    const order = await ordersRepository.findByMobile(Number(delivery_mobile));
 
     return res.json({ order: classToClass(order) });
   }
