@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+      #   passphrase: ${{ secrets.PASSPHRASE }}
           source: '.,!node_modules'
           target: '~/app/massas-cecilia'
 
@@ -71,7 +71,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+      #   passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd ~/app/massas-cecilia
             yarn
