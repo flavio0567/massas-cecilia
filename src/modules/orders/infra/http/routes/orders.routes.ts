@@ -12,7 +12,7 @@ const ordersRouter = Router();
 
 const ordersController = new OrdersController();
 
-ordersRouter.use(ensureAuthenticated);
+// ordersRouter.use(ensureAuthenticated);
 
 ordersRouter.get('/', ordersController.findOrders);
 
