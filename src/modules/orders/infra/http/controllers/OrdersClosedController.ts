@@ -2,17 +2,9 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import UpdateOrderClosedService from '@modules/orders/services/UpdateOrderClosedService';
-import OrdersClosedRepository from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
+import OrdersClosedRepository from '@modules/orders/infra/typeorm/repositories/OrdersClosedRepository';
 
 export default class OrdersController {
-  public async findOrders(req: Request, res: Response): Promise<Response> {
-    const ordersClosedRepository = new OrdersClosedRepository();
-
-    const orders = await ordersClosedRepository.findOrdersDetail()
-
-    return res.json(orders);
-  }
-
   public async findOrdersClosed(req: Request, res: Response): Promise<Response> {
     const ordersClosedRepository = new OrdersClosedRepository();
 

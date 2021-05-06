@@ -10,11 +10,11 @@ interface IRequest {
   delivery_name: string;
   delivery_mobile: string;
   is_order_delivering: number;
-  delivery_address1: string;
-  delivery_address2: string;
-  delivery_city: string;
-  delivery_state: string;
-  delivery_zip_code: string;
+  delivery_address1?: string;
+  delivery_address2?: string;
+  delivery_city?: string;
+  delivery_state?: string;
+  delivery_zip_code?: string;
   delivery_date: Date;
   delivery_time: string;
   order_total: number;

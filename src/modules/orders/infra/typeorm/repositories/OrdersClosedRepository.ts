@@ -23,11 +23,11 @@ class OrdersClosedRepository implements IOrdersClosedRepository {
 
   public async findOrdersClosed(): Promise<Order[] | undefined> {
     const findOrdersClosed = await this.ormRepository.find({
+      order: {              
+        updated_at: 'DESC',
+      },
       where: {
         is_delivered: 1
-      },
-      order: {
-        updated_at: 'DESC',
       },
       relations: ['ordersdetail']
     });
