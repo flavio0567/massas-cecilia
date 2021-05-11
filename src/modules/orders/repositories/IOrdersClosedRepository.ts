@@ -3,6 +3,7 @@ import ICreateOrderDTO from '../dtos/ICreateOrderDTO';
 
 export default interface IOrdersClosedRepository {
   findById(id: string): Promise<Order | undefined>;
+  findByMobile(delivery_mobile: number): Promise<Order[] | undefined>;
   findOrdersClosed(): Promise<Order[] | undefined>;
   update(data: ICreateOrderDTO): Promise<void>;
 }

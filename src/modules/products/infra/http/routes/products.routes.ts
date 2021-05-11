@@ -33,7 +33,7 @@ productsRouter.get(
     const { like } = req.query;
 
     const productsRepository = new ProductsRepository();
-    const product = await productsRepository.searchProducts(like);
+    const product = await productsRepository.searchProducts(`${like}`);
 
     return res.json(product);
   }
@@ -45,6 +45,18 @@ productsRouter.get('/family', async (req, res) => {
   const product = await productsRepository.findFamilyProducts();
 
   return res.json({ product: classToClass(product) });
+});
+
+productsRouter.get(
+  '/all-in-family/:family',
+celebrate({ [Segments.PARAMS]: { family: Joi.number().required() } }),
+async (req, res) => {
+  const { family } = req.params;
+
+  const productsRepository = new ProductsRepository();
+  const products = await productsRepository.findAllProductsFamily(Number(family));
+
+  return res.json(products);
 });
 
 productsRouter.get('/category', async (req, res) => {

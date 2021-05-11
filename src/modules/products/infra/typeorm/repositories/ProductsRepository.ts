@@ -48,6 +48,19 @@ class ProductsRepository implements IProductsRepository {
     return findProduct;
   }
 
+  public async findAllProductsFamily(thisFamily: number): Promise<Product[] | undefined> {
+    const findProduct = await this.ormRepository.find({
+      where: {
+        product_family: Raw(family => `${family} = ${thisFamily}`),
+      },
+      order: {
+        product_family: 'ASC'
+      }
+    });
+    return findProduct;
+  }
+
+
   public async findProductsCategory(
     product_family: number
   ): Promise<Product[] | undefined> {

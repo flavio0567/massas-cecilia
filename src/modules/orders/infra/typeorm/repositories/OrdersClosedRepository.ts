@@ -12,6 +12,17 @@ class OrdersClosedRepository implements IOrdersClosedRepository {
     this.ormRepository = getRepository(Order);
   }
 
+  public async findByMobile(delivery_mobile: number): Promise<Order[] | undefined> {
+    const findOrder = await this.ormRepository.find({
+      where: { delivery_mobile: delivery_mobile },
+      relations: ['ordersdetail'],
+      order: { updated_at: 'DESC' },
+    });
+
+    return findOrder;
+  }
+
+
   public async findById(id: string): Promise<Order | undefined> {
     const findOrderClosed = await this.ormRepository.findOne({
       where: { id },
