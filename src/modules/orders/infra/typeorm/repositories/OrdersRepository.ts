@@ -46,7 +46,7 @@ class OrdersRepository implements IOrdersRepository {
     const findOrder = await this.ormRepository.find({
       where: { delivery_mobile: delivery_mobile },
       relations: ['ordersdetail'],
-      order: { delivery_date: 'DESC' },
+      order: { created_at: 'DESC' },
     });
 
     return findOrder;

@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
-// import CreateUserService from '@modules/users/services/CreateUserService';
 import CreateOrderService from '@modules/orders/services/CreateOrderService';
 import UpdateOrderService from '@modules/orders/services/UpdateOrderService';
 import UpdatedOrderDetailService from '@modules/orders/services/UpdateOrderDetailService';
@@ -31,20 +30,6 @@ export default class OrdersController {
       numberAddress,
       complementAddress,
     } = deliveryLocalization;
-
-    // User
-
-    // const createUser = container.resolve(CreateUserService);
-
-    // await createUser.execute({
-    //   name,
-    //   mobile,
-    //   avatar: '',
-    //   email: '',
-    //   password: '',
-    //   is_admin: 0,
-    //   is_active: 1
-    // });
 
     // Order
 
