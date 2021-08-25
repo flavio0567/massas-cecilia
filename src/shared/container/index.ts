@@ -27,6 +27,9 @@ import OrdersClosedRepository from '@modules/orders/infra/typeorm/repositories/O
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
 
+import ITimeFramesRepository from '@modules/timeframes/repositories/ITimeFramesRepository';
+import TimeFramesRepository from '@modules/timeframes/infra/typeorm/repositories/TimeFramesRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository
@@ -62,8 +65,12 @@ container.registerSingleton<IOrdersClosedRepository>(
   OrdersClosedRepository
 );
 
-
 container.registerSingleton<INotificationsRepository>(
   'NotificationsRepository',
   NotificationsRepository
+);
+
+container.registerSingleton<ITimeFramesRepository>(
+  'TimeFramesRepository',
+  TimeFramesRepository
 );

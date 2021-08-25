@@ -11,6 +11,7 @@ import ordersRouter from '@modules/orders/infra/http/routes/orders.routes';
 import ordersDetailRouter from '@modules/orders/infra/http/routes/ordersdetail.routes';
 import ordersClosedRouter from '@modules/orders/infra/http/routes/ordersclosed.routes';
 import notificationsRouter from '@modules/notifications/infra/http/routes/notifications.routes';
+import timeframesRouter from '@modules/timeframes/infra/http/routes/timeframes.routes';
 
 const routes = Router();
 
@@ -24,5 +25,6 @@ routes.use('/orders', ordersRouter);
 routes.use('/ordersdetail', ordersDetailRouter);
 routes.use('/ordersclosed', ordersClosedRouter);
 routes.use('/notifications', notificationsRouter);
+routes.use('/timeframes', timeframesRouter);
 
 export default routes;
