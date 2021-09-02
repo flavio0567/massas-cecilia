@@ -41,7 +41,7 @@ class TimeFramesRepository implements ITimeFramesRepository {
 
     const dateLocale = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx", { locale: ptBR });
 
-    const checkDate = new Date(dateLocale).setHours(0, 0, 0, 0);
+    const checkDate = new Date(date).setHours(0, 0, 0, 0);
 
     const today = new Date(dateLocale).setHours(0, 0, 0, 0);
 
