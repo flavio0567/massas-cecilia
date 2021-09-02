@@ -39,13 +39,11 @@ class TimeFramesRepository implements ITimeFramesRepository {
       }
     );
 
-    const newDate = new Date();
+    const dateLocale = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx", { locale: ptBR });
 
-    const dateLocale = format(newDate, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx", { locale: ptBR });
+    const checkDate = new Date(dateLocale).setHours(0, 0, 0, 0);
 
-    const checkDate = new Date(date).setHours(0, 0, 0, 0);
-
-    const today = new Date().setHours(0, 0, 0, 0);
+    const today = new Date(dateLocale).setHours(0, 0, 0, 0);
 
     const { start, end } = findTimeFrame[0];
 
