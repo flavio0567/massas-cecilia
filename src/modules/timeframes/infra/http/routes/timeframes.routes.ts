@@ -21,9 +21,10 @@ timeframesRouter.get('/', async (req, res) => {
 timeframesRouter.get(
   '/:weekday/:date', async (req, res) => {
     const { weekday, date } = req.params;
+    const { offset } = req.query;
 
     const timeframesRepository = new TimeFrameRepository();
-    const timeframe = await timeframesRepository.findTimeFrameRange(weekday, date);
+    const timeframe = await timeframesRepository.findTimeFrameRange(weekday, date, Number(offset));
 
     return res.json({ timeframe: classToClass(timeframe) });
 });

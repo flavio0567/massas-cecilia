@@ -6,7 +6,6 @@ import IUpdateTimeFrameDTO from '@modules/timeframes/dtos/IUpdateTimeFrameDTO';
 
 import TimeFrame from '../schemas/TimeFrame';
 import { add, format, formatISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 
 class TimeFramesRepository implements ITimeFramesRepository {
   private ormRepository: MongoRepository<TimeFrame>;
@@ -27,7 +26,7 @@ class TimeFramesRepository implements ITimeFramesRepository {
     return findTimeFrame;
   }
 
-  public async findTimeFrameRange(weekday: string, date: string): Promise<TimeFrame[]> {
+  public async findTimeFrameRange(weekday: string, date: string, offset: number): Promise<TimeFrame[]> {
     const findTimeFrame = await this.ormRepository.find(
       {
         order: {
@@ -39,14 +38,17 @@ class TimeFramesRepository implements ITimeFramesRepository {
       }
     );
 
-    const dateLocale = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx", { locale: ptBR });
+    let dateTimeNow = new Date();
+
+    let hourNow = dateTimeNow.getHours();
+    hourNow -= offset / 60;
+
+    dateTimeNow.setHours(hourNow);
 
     const checkDate = new Date(date).setHours(0, 0, 0, 0);
-
-    const today = new Date(dateLocale).setHours(0, 0, 0, 0);
+    const today = new Date(dateTimeNow).setHours(0, 0, 0, 0);
 
     const { start, end } = findTimeFrame[0];
-
     const startHour = Number(start.slice(0, 2));
 
     const eachHourArray = Array.from(
@@ -72,9 +74,10 @@ class TimeFramesRepository implements ITimeFramesRepository {
 
     let resultTimeFrame;
 
-    const checkHour = (formatISO(add(Date.parse(dateLocale), { minutes: 50 }), { representation: "time" })).slice(0, 5);
+    const checkHour = (formatISO(add(dateTimeNow, { minutes: 50 }), { representation: "time" })).slice(0, 5);
 
     if (today === checkDate) {
+
       resultTimeFrame = timeFrameRange
         .filter((time) => time >= start && time <= end)
         .map((time: string) => {
